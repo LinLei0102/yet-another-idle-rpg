@@ -139,8 +139,22 @@ const play_button = document.getElementById("loading_screen_play_button");
 
 const languages = {
     english: "english",
+    chinese: "chinese", //简体中文（汉化补丁）
 };
-let language = languages.english;
+
+//汉化补丁：界面语言以 localStorage 的 yairpg_language 为准，缺省为简体中文
+function get_stored_language() {
+    try {
+        const stored = localStorage.getItem("yairpg_language");
+        if(stored === "english") {
+            return languages.english;
+        }
+    } catch(e) {
+        console.warn("Could not read stored language.", e);
+    }
+    return languages.chinese;
+}
+let language = get_stored_language();
 
 let is_loading_error = false;
 
@@ -587,6 +601,25 @@ function option_do_dynamic_loot_message(option) {
     } else {
         game_options.do_dynamic_loot_message = false;
     }
+}
+
+//汉化补丁：简体中文 / English 界面切换（切换后重载页面，保证全部文本重新初始化）
+function option_chinese_language(option) {
+    const checkbox = document.getElementById("options_chinese_language");
+    if(option !== undefined) {
+        checkbox.checked = option;
+    }
+
+    if(option === undefined) {
+        return;
+    }
+
+    try {
+        localStorage.setItem("yairpg_language", checkbox.checked ? "chinese" : "english");
+    } catch(e) {
+        console.warn("Could not store language preference.", e);
+    }
+    window.location.reload();
 }
 
 /**
@@ -3684,6 +3717,37 @@ function create_save() {
  * called from index.html
  * @returns save string encoded to base64
  */
+//汉化补丁：存档里出现中文（角色名等）后 btoa 会抛 InvalidCharacterError，这里改用 UTF-8 安全的 base64
+function zh_bytes_to_base64(bytes) {
+    let binary = "";
+    const chunk_size = 0x8000;
+    for (let i = 0; i < bytes.length; i += chunk_size) {
+        binary += String.fromCharCode.apply(null, bytes.subarray(i, i + chunk_size));
+    }
+    return btoa(binary);
+}
+
+function zh_save_to_base64(save_string) {
+    try {
+        return zh_bytes_to_base64(new TextEncoder().encode(save_string));
+    } catch (e) {
+        return btoa(save_string);
+    }
+}
+
+function zh_base64_to_save(base64_string) {
+    const binary = atob(base64_string);
+    const bytes = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) {
+        bytes[i] = binary.charCodeAt(i);
+    }
+    try {
+        return new TextDecoder("utf-8", { fatal: true }).decode(bytes);
+    } catch (e) {
+        return binary; //旧存档是纯 ASCII，原样返回
+    }
+}
+
 function save_to_file() {
     if(Date.now() - last_rewarded_export > time_between_export_rewards) {
         last_rewarded_export = Date.now();
@@ -3692,7 +3756,7 @@ function save_to_file() {
 
     //will create save twice...
     save_progress();
-    return btoa(create_save());
+    return zh_save_to_base64(create_save());
 }
 
 /**
@@ -3751,6 +3815,9 @@ function load(save_data) {
             }
             
         }
+
+        //汉化补丁：localStorage 里的语言偏好优先于存档中的旧值
+        language = get_stored_language();
 
         last_rewarded_export = save_data.last_rewarded_export || last_rewarded_export;
 
@@ -4597,6 +4664,16 @@ function load(save_data) {
 
         set_loading_screen_progress("Hiding rats in your walls");
 
+        //汉化补丁：旧存档里的地点 id 兼容（上游 v0.5.5.x 把 "Cat café" 改名为 "Cat cafe"）
+        const legacy_location_ids = {"Cat café": "Cat cafe"};
+        Object.keys(legacy_location_ids).forEach(function(old_id) {
+            const new_id = legacy_location_ids[old_id];
+            if(save_data.locations && save_data.locations[old_id] && !save_data.locations[new_id]) {
+                save_data.locations[new_id] = save_data.locations[old_id];
+                delete save_data.locations[old_id];
+            }
+        });
+
         Object.keys(save_data.locations).forEach(function(key) {
             if(locations[key]) {
                 if(save_data.locations[key].is_unlocked) {
@@ -5137,9 +5214,9 @@ function load(save_data) {
 function load_from_file(save_string) {
     try{
         if(is_on_dev()) {
-            localStorage.setItem(dev_save_key, atob(save_string));
+            localStorage.setItem(dev_save_key, zh_base64_to_save(save_string));
         } else {
-            localStorage.setItem(save_key, atob(save_string));
+            localStorage.setItem(save_key, zh_base64_to_save(save_string));
         }        
         window.location.reload(false);
     } catch (error) {
@@ -5226,7 +5303,11 @@ function load_other_release_save() {
 }
 
 function hard_reset() {
-    let confirmation = prompt(`This will erase all your progress and you will have to start from the very beginning. If you are sure this is what you want, type "reset" below`);
+    //漢化补丁：浏览器原生 prompt 无法被覆盖层翻译，按当前语言直出文案；输入校验仍是英文 "reset"
+    const hard_reset_prompt = language === languages.chinese
+        ? `本操作会清除你的全部进度，你需要从头开始。如果你确定要这样做，请在下面输入 "reset"`
+        : `This will erase all your progress and you will have to start from the very beginning. If you are sure this is what you want, type "reset" below`;
+    let confirmation = prompt(hard_reset_prompt);
 
     if(confirmation === "reset" || confirmation === `"reset"`) {
         if(is_on_dev()) {
@@ -5833,6 +5914,7 @@ window.option_hide_max_level_skills = option_hide_max_level_skills;
 window.option_use_text_outlines_for_tooltips = option_use_text_outlines_for_tooltips;
 window.option_use_text_outlines_for_bars = option_use_text_outlines_for_bars;
 window.option_do_dynamic_loot_message = option_do_dynamic_loot_message;
+window.option_chinese_language = option_chinese_language;
 
 window.change_completed_quest_visibility = change_completed_quest_visibility;
 

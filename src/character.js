@@ -79,7 +79,7 @@ class Hero extends Person {
                         armor_penetration: 0,
                 };
                 this.race = "nekomimi";
-                this.name = "Hero";
+                this.name = "英雄"; //汉化补丁：默认角色名
                 this.titles = {};
                 this.stats = {
                     full: {...this.base_stats}, 

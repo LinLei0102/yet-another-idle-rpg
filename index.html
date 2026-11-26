@@ -6,6 +6,10 @@
         <script type="module" src="resources/js/HackTimer/HackTimer.min.js"></script>
 
         <script type='module' src="dist/bundle.js?version=v0.5.5.30"></script>
+
+        <!--简体中文汉化补丁：字典 + 运行时覆盖层（放于 bundle 之前，保证首个渲染帧即可翻译）-->
+        <script src="zh-cn-dict.js?version=9f8cc7de"></script>
+        <script src="zh-cn.js?version=9f8cc7de"></script>
         <!--script type="module" src="src/main.js"></script-->
 
         <!--Icons-->
@@ -74,7 +78,7 @@
                 <div id = "hero_creation_panel_first_row"> 
                     <div id = "hero_creation_panel_name"> 
                         <label for="hero_creation_name_field" data-translation="ui name selection"></label><br>
-                        <input type = "text" id = "hero_creation_name_field" value="Hero"> 
+                        <input type = "text" id = "hero_creation_name_field" value="英雄"> 
                     </div>
                     <div id = "hero_creation_panel_height_selection">
                         <label for="height_select" data-translation="ui height selection"></label><br>
@@ -1061,6 +1065,10 @@
                 <div class="options_choice">
                     <input type="checkbox" id="options_dynamic_message" name="options_dynamic_message" onclick = "option_do_dynamic_loot_message()">
                     <label for="options_dynamic_message">Use a single dynamically updated message for loot</label>
+                </div>
+                <div class="options_choice">
+                    <input type="checkbox" id="options_chinese_language" name="options_chinese_language" onclick = "option_chinese_language()">
+                    <label for="options_chinese_language">中文界面 / Simplified Chinese</label>
                 </div>
                 <div class="options_choice options_choice_range">
                     <label for="options_expo_threshold">Use scientific notation for values over:</label>

@@ -1,8 +1,10 @@
 
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <body>
     <head>
+        <meta charset="utf-8">
+        <title>《又一个放置RPG》更新日志</title>
         <script type="module" src = "src/game_version.js"> </script>
 
         <style>
@@ -61,1177 +63,1178 @@
         </style>
     </head>
 
-<div id="header">Click on blocks to unfold their content</div>
+<div id="lang_switch"><a href="changelog-en.html">English</a></div>
+<div id="header">点击方块可展开内容</div>
 
-<button type="button" class="collapsible">v0.5.5 - The Boring Stuff [testing release: 26/05/2026 / main release: 21.06.2026]</button>
+<button type="button" class="collapsible">v0.5.5 - 无聊的部分 [测试版：26/05/2026 / 正式版：21.06.2026]</button>
 <div class="content"><pre>
 v0.5.5
-    - most of equipment components are now auto-generated based on certain set of properties; this changes the balance of the equipment by a lot in some cases
-    - expanded Village content again
+    - 大部分装备部件现在都基于一组特定属性自动生成；这在某些情况下大幅改变了装备的平衡性
+    - 再次扩充了村庄内容
 
-    - most of woodcutting actions now have a small chance to drop tree sap, which can be used to make a potion that will quickly deplete your stamina, for all fans of the 'Persistence' skill    
-    - added milestones on "Shield blocking" skill
-    - added an alternative game action for progressing one quest, stupid and with stupidly high requirements, because people asked (and I don't care that they did so jokingly)
-    - multiplicative effects on items now have a better scaling with item rarity (with some exceptions, like attack speed on armor)
-    - some of resource gathering activities now scale up to 100% chance but had slightly increased lvl needed for full efficiency
-    - greatly reduced material costs of chainmail
-    - changed action texts for ant nest searches to make it easier to understand that they are subsequent actions and not one that's bugged
-    - unique items no longer show value in tooltips
-    - added a new textline to clear out some confusion with one of quests
-    - added simple background color change for day-night cycle, affected by weather, with separate color for roofed locations; disabled by default, just like background animations
-    - moved the 'hide maxxed skills' option from options panel to skill box
-    - added an option to use a dynamically updated message for displaying loot (from combat/gathering) instead of logging everything separately, removed the option of logging summary at the end of gathering
-        * implemented from scratch, but inspired by a similar solution in a mod by Haylen https://gautech.github.io/experimental-idle-rpg/
-    - slightly increase bonemeal quest reward
-    - slightly increased some trader profit margins
+    - 大部分伐木行动现在都有小概率掉落树液，可用它制作一种会快速消耗体力的药水，献给所有爱好「坚持」技能的人
+    - 新增了「盾牌格挡」技能的里程碑
+    - 为推进某个任务新增了一个替代行动，又蠢要求又高得离谱，因为有人提了要求（我不在乎他们只是开玩笑）
+    - 物品上的倍率效果现在随物品品质有更好的成长性（有少数例外，比如护甲上的攻击速度）
+    - 部分资源采集活动现在可以成长到 100% 概率，但达到满效率所需的等级略有提高
+    - 大幅降低了锁子甲的材料消耗
+    - 修改了蚂蚁巢穴搜寻的行动文本，让人更容易理解这些是连续的行动，而不是出了 bug 的行动
+    - 独特物品不再在提示框中显示价值
+    - 新增了一句台词，以消除某个任务带来的一些困惑
+    - 新增了简单的昼夜循环背景变色，受天气影响，有屋顶的地点使用单独的颜色；默认关闭，与背景动画一致
+    - 把「隐藏已满级技能」选项从选项面板移到了技能框
+    - 新增了一个选项，可用一条动态更新的消息显示战利品（来自战斗／采集），而不必把每一条都单独记录；移除了在采集结束时记录汇总的选项
+        * 从零实现，灵感来自 Haylen 的一个 mod 中的类似方案 https://gautech.github.io/experimental-idle-rpg/
+    - 略微提高了骨粉任务奖励
+    - 略微提高了一些商人的利润率
 
-    - display conditions for location actions are now properly supported
-    - crafting recipes' results can now be fuzzy (instead of success/failure, it can be a partial success)
-    - active effects' code will now skip stat updates if effect was already present and only had its duration extended
-    - stat recalcs will now update shield tooltips only when needed (i.e. when that stat actually changed)
-    - font used on loading page is now included in files, in case your system does not support it by default
+    - 地点行动的显示条件现在得到了正确支持
+    - 制作配方的结果现在可以是模糊的（不再是成功／失败，而可能是部分成功）
+    - 如果效果已经存在、只是延长了持续时间，生效效果的代码现在会跳过属性更新
+    - 属性重算现在只在需要时更新盾牌提示框（即该属性确实发生变化时）
+    - 加载页面使用的字体现在已包含在文件里，以防你的系统默认不支持它
 
-    - updated translationManager to use translations provided in separate files instead of cramming everything in one
-    - changed the way DOM is manipulated by moving away from using innerHTML
-    - refactored tooltip movement code, reducing it to a much more manageable form
-    - rewards objects can now include dialogue locking
-    - any logged message will now replace "%HeroName%" with character name
+    - 更新了 translationManager，改用单独文件提供的译文，而不是把所有内容都塞进一个文件
+    - 改变了操作 DOM 的方式，不再使用 innerHTML
+    - 重构了提示框移动的代码，使其精简到更易维护的形式
+    - 奖励对象现在可以包含对话锁定
+    - 任何被记录的消息现在都会把 %HeroName% 替换为角色名字
 
-    - fixed a minor issue that could have caused problems with crafting xp gains if someone were to reach max level in a crafting skill (wasn't possible without cheating)
-    - fixed a minor display bug where if a shield was marked for trade, it would [purely visually] reappear in original owner's inventory if a stat recalc happened in the meantime
-    - fixed a minor display bug with prices not reflecting market saturiation upon initial trade entry
-    - activity unlocks will no longer be logged in messages if other conditions of accessing it are not yet met
+    - 修复了一个小问题：若有人把某个制作类技能练到满级，可能会导致制作经验获取出问题（不靠作弊本来做不到）
+    - 修复了一个小的显示 bug：若一面盾牌被标记为交易，而期间发生了属性重算，它会[纯视觉上]重新出现在原主人的背包里
+    - 修复了一个小的显示 bug：首次进入交易时价格没有反映市场饱和
+    - 若进入某活动的其他条件尚未满足，该活动的解锁将不再记录到消息中
 
-    - sped up a lot of gathering activites; applied from v0.5.5.15
-    - added hp regen on first 'Regeneration' milestone, reduced one of later milestones by same ammount; applied from v0.5.5.15
-    - sped up early game a bit via a series of minor stat changes; applied from v0.5.5.15
-    - item rewards can now have quality specificed; applied from v0.5.5.15
-    - added a choice of starting weapon in dialogue with village elder; applied from v0.5.5.15
+    - 大幅加快了多种采集活动；自 v0.5.5.15 起生效
+    - 在第一个「回复」里程碑上增加了生命回复，并把后面某个里程碑降低了相同的数值；自 v0.5.5.15 起生效
+    - 通过一系列小幅属性调整略微加快了前期节奏；自 v0.5.5.15 起生效
+    - 物品奖励现在可以指定品质；自 v0.5.5.15 起生效
+    - 在与村长的对话中新增了初始武器的选择；自 v0.5.5.15 起生效
 
-    courtesy of OnonokiNonon:
-        * an item log
-            - items not yet obtained are now displayed as "????" in gathering rewards (also in bestiary tooltips, but that was added later by Mik)
-        * some new recipes
-        * refactoring of code related to activities
-        * refactoring of crafting code:
-            - areas can have different crafting categories available
-            - recipes that use material types can mix ingredients
-            - component recipes appear permanently after discovering their material
-        * added cooking stations to mountain camp and to lake camp
-        * made it possible for materials to have quality (currently used on fish)
-        * item quality is now displayed in inventory instead of being only in tooltips
-        * health/stamina drains are now displayed directly on their bars
-    courtesy of Bram-Nordvegr:
-        * a new location and a new challenge zone
-        * a two new types of wood
-        * some new recipes
-    courtesy of Erlemar:
-        * a new gathering spot
-    courtesy of Nicholas Biles:
-        * text fixes/tweaks
-    courtesy of SardineMilk, applied from v0.5.5.4:
-        * text fixes/tweaks
-    courtesy of Trilbyspaceclone, applied from v0.5.5.10:
-        * a new book
+    感谢 OnonokiNonon：
+        * 物品日志
+            - 尚未获得的物品在采集奖励中现在显示为 ????（图鉴提示框中也是，但那是后来由 Mik 添加的）
+        * 一些新配方
+        * 重构了与活动相关的代码
+        * 重构了制作相关代码：
+            - 各个区域可以有不同的可用制作类别
+            - 使用材料类型的配方可以混合使用材料
+            - 部件配方在发现其材料后会永久出现
+        * 在山间营地和湖畔营地新增了烹饪台
+        * 现在材料也可以有品质（目前用于鱼）
+        * 物品品质现在直接显示在背包中，而不是只在提示框里
+        * 生命／体力的持续消耗现在直接显示在对应的条上
+    感谢 Bram-Nordvegr：
+        * 一个新地点和一个新挑战区域
+        * 两种新木材
+        * 一些新配方
+    感谢 Erlemar：
+        * 一个新的采集点
+    感谢 Nicholas Biles：
+        * 文本修正／微调
+    感谢 SardineMilk，自 v0.5.5.4 起生效：
+        * 文本修正／微调
+    感谢 Trilbyspaceclone，自 v0.5.5.10 起生效：
+        * 一本新书
 
 v0.5.5.1
-    - fixed the wording of the poison resistance skill description
-    - fixed a bug that made it impossible to leave a gathering action once anything was gained
+    - 修复了抗毒技能描述的措辞
+    - 修复了一个 bug：一旦获得任何收获，就无法退出采集行动
 
 v0.5.5.2
-    - fixed inconsistent positioning of travel / fast travel buttons in locations
-    - fixed a bug with some additional stats missing from weapon components
-    - fixed a bug with stone mining not working
+    - 修复了各地点中旅行／快速旅行按钮位置不一致的问题
+    - 修复了武器部件缺失部分附加属性的 bug
+    - 修复了采石不工作的 bug
 
 v0.5.5.3
-    - fixed a bug with crit chance from generated gear not working due to incorrect stat name
+    - 修复了生成的装备因属性名写错导致暴击率不生效的 bug
 
 v0.5.5.4
-    - fixed a serious display issue with all dialogues being 'undefined' if Mofu Mofu mode was disabled
-    - fixed a display bug with incorrect health regeneration value on health bar if any negative modifier was present
-    - fixed a display bug with logged resource gains getting doubled (actual number unaffected) when gathering was ended, if dynamic message was enabled
-    - fixed issue with activity xp sometimes being awarded incorrectly
-    - tweaked shield strength a bit, reducing some excessive values
-    - activable buttons now have different appearance for active and for hovered
-    - fixed an error on loading if certain items were present in savefile (due to lack of compatibility with changes from auto-generation)
-    - text fixes/tweaks by SardineMilk
+    - 修复了一个严重的显示问题：关闭 Mofu Mofu 模式后所有对话都显示为 undefined
+    - 修复了一个显示 bug：存在任何负面修正时，生命条上显示的生命回复数值不正确
+    - 修复了一个显示 bug：开启动态消息后，结束采集时记录的资源获取量会翻倍（实际数量不受影响）
+    - 修复了活动经验有时发放不正确的问题
+    - 略微调整了盾牌强度，降低了部分过高的数值
+    - 可激活按钮现在在激活与悬停时外观不同
+    - 修复了存档中存在某些物品时导致的加载错误（原因是与自动生成的改动不兼容）
+    - SardineMilk 的文本修正／微调
 
 v0.5.5.5
-    - reduced skill requirements on a certain very stupid game action to be actually reachable
-    - removed quality roll on swampland foraging as it was not intended to be there
+    - 降低了某个非常蠢的游戏行动的技能要求，让它真正能够达到
+    - 移除了沼泽地采集的品质随机，因为那本来就不该存在
 
 v0.5.5.6
-    - fixed another loading error with certain items
+    - 修复了另一起因某些物品导致的加载错误
 
 v0.5.5.7
-    - fixed a bug on component-based crafting when crafting multiple and one of components ran out
-    - tweaked some more component stats
-    - fixed rounding issue with one of component stats
-    - more text fixes/tweaks by SardineMilk
+    - 修复了基于部件的制作在批量制作且其中一个部件耗尽时的 bug
+    - 又调整了一些部件属性
+    - 修复了某个部件属性的取整问题
+    - 更多 SardineMilk 的文本修正／微调
 
 v0.5.5.8
-    - fixed another issue with stats on generated components
-    - fixed minor issue with sign on stamina bar showing as "+-" if stamina was being drained
-    - slightly updated help page, updated list of contributors
+    - 修复了生成部件的属性上的另一个问题
+    - 修复了一个小问题：体力正在被消耗时，体力条上的符号显示为 +-
+    - 略微更新了帮助页面，更新了贡献者名单
 
 v0.5.5.9
-    - fixed an issue with item log only recognizing newly gathered items and ignoring what was already in the inventory
-    - fixed an issue with item log's name obscuring failing to recognize some items due to receiving incorrect arguments
-    - fixed some issues with value of 'Simple dream catcher' item
-    - fixed issue with cold tolerance on turtleshell components
+    - 修复了物品日志只识别新采集的物品、忽略背包中已有物品的问题
+    - 修复了物品日志因收到的参数有误而在名称匹配时无法识别某些物品的问题
+    - 修复了「简易捕梦网」物品价值的一些问题
+    - 修复了龟甲部件耐寒的问题
 
 v0.5.5.10
-    - fixed a minor display bug with efficiency scaling not displaying on gathering activities
-    - time-restricted non-job activities should now be properly locked when unavailable
-    - a new book by Trilbyspaceclone
+    - 修复了一个小的显示 bug：采集活动上不显示效率成长
+    - 受时间限制的非职业活动在不可用时应能正确锁定
+    - Trilbyspaceclone 的一本新书
 
 v0.5.5.11
-    - fixed a bug where dialogue actions were not taken into account for deciding whether dialogue should be displayed,
-        resulting in dialogues that had only an action but no textlines being unavailable
+    - 修复了一个 bug：在决定是否显示对话时没有考虑对话行动，
+        导致只有行动、没有台词的对话无法出现
 
 v0.5.5.12
-    - fixed a minor issue with stat rounding on generated components
-    - warthog will no longer be added to bestiary upon defeat, as it's a challenge enemy
-    - item log will now use scientific notation for numbers too large to fit otherwise
+    - 修复了生成部件属性取整的一个小问题
+    - 疣猪被击败后不再加入图鉴，因为它是挑战敌人
+    - 物品日志现在对大到无法正常显示的数值使用科学计数法
 
 v0.5.5.13
-    - fixed a much bigger issue with stat rounding created by previous fix to it
+    - 修复了此前针对属性取整的修复所造成的一个更大的问题
 
 v0.5.5.14
-    - reduced wood log cost for crafting charcoal from 5 to 1, willow wood pieces can no longer be used to make it
+    - 制作木炭所需的原木从 5 降到 1，柳木块不能再用于制作
 
 v0.5.5.15
-    - reduced minimum gathering times on most of gathering activities, reduced maximum gathering times on some of them, both in exchange for slightly increased level needed for maximum efficiency
-    - added hp regen on first 'Regeneration' milestone, reduced hp regen on one of later milestones by same ammount
-    - increased base health 50->60 and base strength 10->12, reduced base stamina 50->40 and base agility 10->8
-    - reduced defense on 'Starving wolf rat' and 'Wolf rat' both by 1
-    - item rewards can now have quality specificed
-    - instead of starting with a sword, player can get a free starting weapon of any type from early dialogue with village elder, at 50% quality instead of 40% the sword had
+    - 降低了大多数采集活动的最短采集时间，降低了其中部分的最长采集时间，两者都以略微提高达到满效率所需等级为代价
+    - 在第一个「回复」里程碑上增加了生命回复，并把后面某个里程碑的生命回复降低了相同的数值
+    - 基础生命 50->60、基础力量 10->12 提高，基础体力 50->40、基础敏捷 10->8 降低
+    - 「饥饿狼鼠」和「狼鼠」的防御各降低 1
+    - 物品奖励现在可以指定品质
+    - 玩家不再以一把剑开局，而是可以在与村长的早期对话中免费获得任意类型的初始武器，品质为 50%，而不是原来那把剑的 40%
 
 v0.5.5.16
-    - type-based multicrafting will now once again stop when current material depletes to the point where it alone is not enough, but clicking again will mix it with next material in line
-        e.g. if charcoal still required 5 wood and you had 13 'Rough wood log' and 12 'Wood log', first click would craft 2 (using 10 'Rough wood logs')
-        and second click would craft 3 (using remaining 3 'Rough wood logs' and the 12 'Wood logs')
-    - weapons with attack lower than 10 now have it rounded to one decimal place instead of to integer
-    - removed mention of player having an old sword from an early village elder dialogue
+    - 基于类型的批量制作现在会再次在当前材料消耗到单靠它已不够时停下，但再次点击会把它与队列中的下一种材料混合使用
+        例如，若木炭还需要 5 份木材，而你有 13 个「粗木原木」和 12 个「原木」，第一次点击会制作 2 个（用掉 10 个「粗木原木」）
+        第二次点击会制作 3 个（用掉剩余的 3 个「粗木原木」和那 12 个「原木」）
+    - 攻击力低于10的武器，其数值现在保留一位小数，不再取整
+    - 移除了早期村长对话中提到玩家持有旧剑的内容
 
 v0.5.5.17
-    - fixed a crafting bug caused by a typo in previous patch
+    - 修复了上一补丁中一处拼写错误导致的制作问题
 
 v0.5.5.18
-    - fixed a bug with resource gathering where if theoretical upper count was larger than 1, maximum count that could actually be gained was 1 less than displayed
+    - 修复了资源采集的一个问题：当理论上限大于1时，实际能获得的最大数量比显示的少1
 
 v0.5.5.19
-    - fish at Forest lake will now properly roll for quality
+    - 森林湖泊的鱼现在会正确进行品质判定
 
 v0.5.5.20
-    - fixed a bug that caused dynamic loot message to seemingly overwrite location xp messages
+    - 修复了动态战利品提示看似会覆盖地点经验提示的问题
 
 v0.5.5.21
-    - actually fixed that bug that was supposed to be fixed in previous version
+    - 真正修复了上个版本本该修好的那个问题
 
 v0.5.5.22
-    - added Perception scaling and xp rewards to some actions that should have had them but didn't
-    - increased Atratan mining xp
+    - 为一些本该拥有却没有的动作补上了「感知」加成与经验奖励
+    - 提高了阿特拉坦的采矿经验
 
 v0.5.5.23
-    - fixed a bug with quality of item components from storage not being loaded properly and defaulting to 100%
+    - 修复了从仓库取出的物品部件品质未被正确加载、默认变为100%的问题
 
 v0.5.5.24
-    - fixed a display bug where resources in activity tooltip remained obfuscated after first time they were gained, being revealed only in next cycle after that
-    - changed requirement scaling on Carya Canyon unlock to a more reasonable one
-    - fixed a minor bug where if a location with a not-yet-unlocked housing was added to favourites, it would be displayed in fast travel twice after housing is unlocked in there
+    - 修复了一处显示问题：活动提示框中的资源在首次获得后仍处于模糊状态，要到下一次循环才显示
+    - 调整了卡里亚峡谷解锁条件的成长曲线，使其更合理
+    - 修复了一个小问题：若把住所尚未解锁的地点加入收藏，该地点的住所在之后解锁时，快速旅行列表中会出现两次
 
 v0.5.5.25
-    - fixed a bug on loading caused by a previous patch
+    - 修复了上一补丁导致的读档问题
 
 v0.5.5.26
-    - hopefully fixed issue with crafting quality sometimes falling outside the range shown on crafting tooltip
-    - crab bisque now has a chance to return a glass bottle upon consumption
+    - 希望能修好制作品质偶尔超出制作提示框显示范围的问题
+    - 蟹肉浓汤现在有几率在食用后返还一个玻璃瓶
 
 v0.5.5.27
-    - 'roasted rat meat' is now tagged as poison for skill xp purposes
+    - 「烤鼠肉」现在在技能经验判定中被标记为毒物
 
 v0.5.5.28
-    - fixed a minor text issue with logging messages about skills granting bonuses to skill categories
+    - 修复了技能为技能类别提供加成的日志提示中的一处文字问题
 
 v0.5.5.29
-    - fixed incorrect sorting of equipment components in crafting display
+    - 修复了制作界面中装备部件排序不正确的问题
 
-======= released to main
+======= 已发布至主线
 
 v0.5.5.30
-    - fixed issues with inventory sorting
-    - short blades have their EP bonus back
+    - 修复了背包排序的问题
+    - 短刃重新获得了闪避点加成
 
 </pre></div>
 
 
-<button type="button" class="collapsible">v0.5.1  [testing release: 31/01/2026 / main release: 15/02/2026]</button>
+<button type="button" class="collapsible">v0.5.1  [测试版：31/01/2026 / 正式版：15/02/2026]</button>
 <div class="content"><pre>
 v0.5.1
-    - added a new early game quest in the village, obtained after <span class="spoiler"> clearing the first cave area (Cave room) </span>
-            tweaked a related dialogue to make it clear that it's optional and not part of the <b> main </b> progression (although still encouraged)
-    - Ctrl+S can now be used to manually save the game (you can still do that by clicking the 'Save' button if that's what you prefer)
-    - implemented a new skill, "Perception", which increases crit chance; it gains 1 xp on performing a critical hit, but has lower xp cost scaling and relatively many xp bonuses; 
-        actions to search for something now scale with it (up to 100% success chance on sufficient level) and reward some "Perception" xp on success
-    - added a tiny star icon left of each item in inventory, allowing adding them to favourites for display purposes (inventory filtering)
-    - courtesy of OnonokiNonon:
-        * added a new lategame area (forest lake) with new enemies, new crafting materials, and new training spots
-        * added fishing
-        * game options now include configurable threshold for switching display of values from raw number to scientific form
-    - courtesy of BD Jim:
-        * added a few new endgame areas (swampland region) with new enemies, new crafting materials, and new training spots
+    - 新增了一条村庄的前期任务，在<span class="spoiler">清理第一个洞穴区域（洞穴房间）</span>后获得
+            调整了相关对话，以明确说明该任务为可选，不属于<b>主线</b>进度（但仍建议完成）
+    - 现在可以用Ctrl+S手动存档（如果你更习惯，也可以继续点击「存档」按钮）
+    - 实装了新技能「感知」，可提高暴击率；每次打出暴击可获得1点经验，其经验消耗成长更低，且相对拥有较多经验加成；
+        用于搜寻某物的动作现在会受其加成（等级足够时成功率最高100%），并在成功时给予少量「感知」经验
+    - 在背包中每件物品左侧新增了一个小星星图标，可将物品加入收藏以便展示（用于背包筛选）
+    - 感谢 OnonokiNonon：
+        * 新增了一个后期区域（森林湖泊），包含新敌人、新制作材料与新的训练点
+        * 新增了钓鱼
+        * 游戏选项新增了可配置的阈值，用于切换数值以原始数字还是科学计数法显示
+    - 感谢 BD Jim：
+        * 新增了几个终局区域（沼泽地带），包含新敌人、新制作材料与新的训练点
 
-    - 'Shield blocking' now additionally provides a %-based dmg reduction scaling with skill level, applied before any other calculations
-    - expanded milestones of most of the skills
-    - locations now show their clear counts
-    - location enemy counts are now displayed in form of "enemies left / total enemies"
-    - modified most of xp rewards for clearing locations, setting them all around 40% of total xp value of enemies for first clear and 20% for subsequent clears (excluding group size modifier);
-        some ended up being greatly increased, other being greatly reduced, due to lack of consistency so far
-    - slightly increased strength required to open the mysterious gate
-    - updated some item tooltips, to clarify the difference between leather and processed hides/pelts
-    - 'Mountain camp' now counts as a roofed location (no rain)
-    - 'Medicine for dummies' now gives a tiny bit of 'Medicine' xp to make skill visible after the book is read
-    - reputation now affects merchant profit margins in same way 'Haggling' does, capping at 1000
-    - added a few more textlines to "Village guard"; learning stances from her now also rewards a little bit of "Combat" experience
-    - greatly buffed xp multipliers provided by books
-    - changed message colors for being hit/defeated a bit, to have slightly higher contrast against the background
-    - added contrasting outlines to some parts of item tooltips and to values on health/mana/stamina bars
-    - name of "suspicious guy" in "Slums" now changes after reaching far enough in his dialogue
-    - reduced attack power on 'long weak bone shaft'
-    - slightly increased xp values of wolves
-    - bestiary is now sorted alphabetically if enemies are of same rank
-    - completed quests can now be hidden (checkbox under quests)
-    - maxxed out skills can now be hidden (options panel)
-    - moved options panel to bottom-left corner
-    - export reward is no longer available instantly on new game, but after 4 hours instead
+    - 「盾牌格挡」现在额外提供随技能等级提升的百分比伤害减免，且在其它计算之前生效
+    - 扩充了大部分技能的里程碑
+    - 地点现在会显示其通关次数
+    - 地点的敌人数量现在以「剩余敌人／敌人总数」的形式显示
+    - 调整了大部分地点通关的经验奖励，统一设为敌人总经验值的40%左右（首次通关）与20%（后续通关），不含队伍规模修正；
+        由于此前标准不一，部分地点的经验被大幅提高，另一些则被大幅降低
+    - 略微提高了打开神秘大门所需的力量
+    - 更新了部分物品提示框，以说明皮革与加工过的兽皮／毛皮之间的区别
+    - 「山间营地」现在算作有顶棚的地点（不会下雨）
+    - 「医学入门」现在会给予少量「医学」经验，使该技能在读完书后可见
+    - 声望现在会像「议价」一样影响商人的利润率，上限为1000
+    - 为「村庄守卫」补充了几句台词；向她学习架势现在也会给予少量「战斗」经验
+    - 大幅提高了书籍提供的经验倍率
+    - 微调了被击中／被击败消息的颜色，使其与背景的对比度略高
+    - 为物品提示框的部分内容以及生命／法力／体力条上的数值添加了对比描边
+    - 「贫民区」中「可疑家伙」的名字现在会在其对话推进到一定程度后改变
+    - 降低了「脆弱长骨杆」的攻击力
+    - 略微提高了狼的经验值
+    - 当敌人等级相同时，图鉴现在按字母顺序排序
+    - 已完成的任务现在可以隐藏（任务列表下方的复选框）
+    - 已练满的技能现在可以隐藏（选项面板）
+    - 将选项面板移到了左下角
+    - 导出奖励不再于新游戏时立即获得，改为4小时后获得
 
-    - temperatures and weather should now work properly for challenge zones
-    - tooltips for actions should now actually display
-    - fixed a minor display issue with book descriptions sometimes not updating properly when related skill first becomes visible
-    - fixed a bug with inventory sorting not always using the selected option
+    - 挑战区域的气温与天气现在应能正常工作
+    - 动作的提示框现在应能正常显示
+    - 修复了一处小的显示问题：书籍描述在相关技能首次出现时有时未能正确更新
+    - 修复了背包排序不总是使用所选排序方式的问题
 
-    - expanded verifier to cover most of the recipes
-    - location types can now apply active effects
-    - components (and, as a result, component based equipment) now support bonus skill level mechanic (not in use anywhere)
-    - items can now be made impossible to sell by adding a tag "unsellable" (only handled on player side, based on assumption that they would not be obtained from trade) (not in use anywhere)
-    - conditions can now include hero level
-    - game actions can now keep their progress through stopping and through save/load (only applied to those where it makes sense)
-    - completion count of repeatable actions is now tracked (but not displayed)
-    - ids for locations, enemies, active effects, and recipes, are now autofilled from keys and no longer defaulted to names if id is not provided
-    - ammounts of gained resources in gathering activities can now be skipped if they are meant to always be at 1
-    - combat modifiers from skills for specific enemy types are no longer hardcoded, instead skills come with a method that returns their modifiers ( .get_stat_modifiers ),
-        and a tag-to-skills mapping is defined in enemies.js
-    - item rewards now actually work in the form given in rewards.js
+    - 扩展了校验器，使其覆盖大部分配方
+    - 地点类型现在可以施加生效效果
+    - 部件（以及由部件构成的装备）现在支持技能等级加成机制（目前尚未使用）
+    - 现在可以通过添加「unsellable」标签使物品无法出售（仅在玩家侧处理，前提是此类物品不会通过交易获得）（目前尚未使用）
+    - 状态条件现在可以包含主角等级
+    - 游戏动作现在在停止以及存读档后可以保留进度（仅应用于合理适用的动作）
+    - 可重复动作的完成次数现在会被记录（但不显示）
+    - 地点、敌人、生效效果与配方的id现在由键自动填充，未提供id时不再默认使用名称
+    - 采集类活动中获得的资源数量若固定为1，现在可以省略不显示
+    - 技能针对特定敌人类型的战斗修正不再硬编码，改为由技能自带的方法返回其修正值（.get_stat_modifiers），
+        并在enemies.js中定义了标签到技能的映射
+    - 物品奖励现在会按rewards.js中给出的形式正常生效
 
 v0.5.1.1
-    - reduced xp multiplier from 1st 'Perception' milestone x1.1 -> x1.05
-    - increased skill lvl needed to fully remove penalties in 'aquatic' areas
-    - buffed most of the stats on an endgame boss, as it was balanced before new milestones were added
-    - buffed agility/dexterity on frogs for same reason; slightly reduced their chances to apply debuffs
-    - 'Warrior's necklace' and 'Snake fang ring' are now unsellable
-    - ants gained small chance of dropping forest herbs and tier 2 wood
-    - now only items that are neither equipment nor components remain marked as favourite after being removed from inventory
+    - 降低了「感知」第1个里程碑的经验倍率，x1.1 → x1.05
+    - 提高了在「水域」区域完全消除惩罚所需的技能等级
+    - 增强了某个终局首领的大部分属性，因其平衡是在新增里程碑之前做出的
+    - 出于同样原因增强了青蛙的敏捷／灵巧；略微降低了其施加减益的几率
+    - 「战士项链」与「蛇牙戒指」现在无法出售
+    - 蚂蚁现在有小几率掉落森林草药与二级木材
+    - 现在只有既非装备也非部件的物品，在离开背包后仍会保留收藏标记
     
-    - updated text on a certain placeholder action to make it clear that it's in fact a placeholder
-    - outlines can now be disabled in options panel
-    - reduced the size of the options panel
+    - 更新了某个占位动作的文本，以明确说明它确实是占位内容
+    - 现在可以在选项面板中关闭描边
+    - 缩小了选项面板的尺寸
     
-    - fixed a bug with display of faved items not working
-    - fixed a bug where it was possible to attempt to fav an item that was not yet in inventory (marked for buying from trader)
-    - fixed a bug with storage not being sorted correctly
+    - 修复了收藏物品显示失效的问题
+    - 修复了可以对尚未进入背包的物品（标记为向商人购买）尝试收藏的问题
+    - 修复了仓库排序不正确的问题
 
 v0.5.1.2
-    - reduced requirements for endgame quest from lvl 35 to lvl 25
-    - items no longer lose favourite status upon being equipped
+    - 将终局任务的要求从35级下调至25级
+    - 物品在装备后不再失去收藏状态
 
-    - fixed a minor bug with conditions requiring higher levels than they should
-    - fixed an old overlook with enemy hit/dodge chances not updating in combat (e.g. when changing gear or stance to something with more/less AP/EP)
+    - 修复了状态条件所需等级高于应有值的小问题
+    - 修复了一处长期遗漏：战斗中的敌人命中／闪避几率不会更新（例如换成攻击点／闪避点更多或更少的装备或架势时）
 v0.5.1.3
-    - buffed hit/dodge on first stage of an endgame boss
-    - fixed a bug with tooltips for resource gathering
+    - 增强了某个终局首领第一阶段的命中／闪避
+    - 修复了资源采集的提示框问题
 v0.5.1.4
-    - merged 'Lake camp' into 'Lake beach'; actions, trainings, and further travel require first creating a camp in there
-    - fixed an issue with an error occuring upon failing any of mill-related actions
-    - tweaked stats and protection of equipment made from new materials
-    - removed some spammy console.log that remained from earlier tests
-    - removed silver ingot recipe, as silver is not yet obtainable; don't worry about the console warning
-    - changed order of how some things are calculated for hero stats to remove a minor issue with some stats not updating instantly
+    - 将「湖畔营地」并入「湖滩」；相关动作、训练与后续出行需要先在那里建立营地
+    - 修复了磨坊相关动作失败时会报错的问题
+    - 调整了用新材料制作的装备的属性与防护
+    - 移除了一些早期测试遗留的刷屏console.log
+    - 移除了银锭配方，因为银目前还无法获得；不必在意控制台警告
+    - 调整了主角属性部分计算的顺序，以修复某些属性不会即时更新的小问题
 v0.5.1.5
-    - fixed some issues created by merging of locations in previous patch
+    - 修复了上一补丁合并地点后产生的一些问题
 v0.5.1.6
-    - fixed positioning of export button tooltip in some cases
-    - block strength in shield tooltips should now update correctly when anything that would affect it changes
-    - fixed minor issue with exponent threshold sometimes being saved incorrectly
-    - fixed a minor display issue upon adding item to trade and then cancelling
-    - fixed inventory sorting when sorting by name
+    - 修复了某些情况下导出按钮提示框的位置问题
+    - 当任何会影响格挡强度的因素变化时，盾牌提示框中的格挡强度现在应能正确更新
+    - 修复了指数显示阈值有时保存不正确的小问题
+    - 修复了将物品加入交易后又取消时的一处小显示问题
+    - 修复了按名称排序时的背包排序
 v0.5.1.7
-    - fixed a bug when removing favourited equippable from inventory
-    - "Swimming" skill description now mentions reducing 'aquatic' penalty
+    - 修复了从背包中移除已收藏的可装备物品时的问题
+    - 「游泳」技能描述现在会说明可降低「水域」惩罚
 v0.5.1.8
-    - fixed a bug where enemies didn't properly inherit tags from their templates, negating effects like droprate bonus from 'Butchering'
-    - fixed swamp herbalism not scaling with skill
-    - fixed minor typos in items
+    - 修复了敌人未正确继承其模板标签的问题，该问题使「屠宰」的掉落率加成等效果失效
+    - 修复了沼泽草药学不随技能等级成长的问题
+    - 修复了物品中的若干细微拼写错误
 v0.5.1.9
-    - reduced level scaling for some high-tier items and materials
+    - 降低了部分高阶物品与材料的等级成长
 v0.5.1.10
-    - fixed health regeneration tooltip (%-based values were displayed as 100x larger than they should be)
-    - additional effect of shield skill (%-based reduction to overall damage) no longer applies to training shield
+    - 修复了生命回复提示框的问题（按百分比计算的数值显示为应有值的100倍）
+    - 盾牌技能的附加效果（按百分比降低总体伤害）不再作用于训练用盾牌
 
-======= released to main
+======= 已发布至主线
 
 </pre></div>
 
-<button type="button" class="collapsible">v0.5.0 - The Whimsy Edition: Quests, Weather, kemonomimi, and a lot of other things  [testing release: 28/11/2025 / main release: 30/12/2025] </button>
+<button type="button" class="collapsible">v0.5.0 - 奇想版：任务、天气、兽耳，还有一大堆别的东西  [测试版：28/11/2025 / 正式版：30/12/2025] </button>
 <div class="content"><pre>
 v0.5.0
-    - implemented a Quest system
-    - implemented a simple weather system (temperature and rain), effects are mostly some penalties of varying degree if you get too cold; clothing now provides cold protection
-    - the game is now slightly more fluffy; if you dislike kemonomimi, you can disable it in options
-    - added a small reward (xp-increasing active effect) for exporting the game; when it's available, the export button will be visually marked by bold text and changing colors
-    - travelling now moves the in-game timer forward, affecting durations of all active effects except the one from export reward; travel times scale with skills (mostly 'running')
-    - added foreground animations for rain and for snow, and a background animation of stars for clear sky night; <b>they are disabled by default and can be enabled in the options panel</b>
-    - market saturation system now covers everything except consumables; it has a harsher scaling for equipment and components
-    - market saturation has been split into regions (currently: Village and Slums), with saturation slowly trickling between all regions until it balances out; for existing saves, saturations were equally split between the regions
-    - added some (one, to be precise) actions started from dialogue level
-    - added a new equipment category, capes; they are rather expensive in terms of material cost, but provide the most cold protection out of all item types and allow you to feel fancy
-    - added two new combat zones available from <span class="spoiler">'Forest road'</span>, offering new enemies and a new armor crafting material 
-    - added some actions and related combat zones in <span class="spoiler">'Town farms', after you deal with the boars, completing it unlocks another combat zone from 'Forest road'; enemies in these don't have any drops yet</span>
-    - added another stance, available from <span class="spoiler">'Suspicious man' after helping out in the 'Slums' (it technically existed before, but was impossible to unlock);
-        as usual with new unlocks, if you already used the textline that's supposed to unlock it then you can get it from the repeatable one instead</span>
-    - added a new skill <span class="spoiler">'Regeneration' which increases effectiveness of passive healing (sleeping/resting)</span>
-    - added a new skill <span class="spoiler">'Gluttony'  to complement 'medicine' by increasing the effects of the food items (unlike medicine, this one doesn't get xp from crafting)</span>
-    - added a new skill and training: <span class="spoiler">'Swimming'</span>, available at <span class="spoiler">'Village', after meeting some special conditions (hint: train)</span>
-    - added a new skill <span class="spoiler">'Fortitude' which increases max health and gains xp when you take damage, similarly to 'Tough Skin', however it scales with damage taken and not with enemy xp value</span>
-    - added a new skill and related items: <span class="spoiler">"Digging" and 2 shovels, used for gathering sand (see: glassmaking, at the bottom of this version's changelog)</span>
-    - added a new skill <span class="spoiler">'Cold resistance' which increases cold tolerance by 0.5 per level and gains xp passively at low rate when character is in cold environment</span>
-    - renamed 'Crafting' to 'Tinkering', added a new parent skill: <span class="spoiler">"Crafting mastery" which encompasses 'Tinkering', 'Butchering', and 'Woodworking' (for more on the latter 2, see: bottom of this version's changelog)</span>
-    - added a new spot for training 'Equilibrium' at <span class="spoiler">'Mountain path' and 'Mountain camp'</span>
-    - added a new spot for training 'Climbing' at <span class="spoiler">'Mountain camp'</span>
-    - added another book <span class="spoiler">'Ode to Whimsy, and other poems', available at any trader but with a low chance to appear</span>
-    - added a new consumable <span class="spoiler">'Bread kwas', made from 2 pieces of any bread and a glass bottle (made from 3 pieces of glass), which gives additional stamina regeneration; while not higher than on bread, it's a different effect meaning it can stack</span>
-    - added reputation to display in 'Data' tab (it still does nothing)
-    - added an amulet so that you can finally fill that one equipment slot, obtained <span class="spoiler">as a drop for first clear of one of new combat zones</span>
-    - getting killed now gives a debuff that reduces xp gains to 1/5th for 5 in-game minutes, as a probably-unnecessary exploit prevention
+    - 新增了任务系统
+    - 新增了简单的天气系统（温度与降雨），其影响主要是过冷时不同程度的减益；衣物现在提供防寒
+    - 游戏现在多了点毛茸茸；如果你不喜欢兽耳，可以在选项中关闭
+    - 为导出游戏新增了少量奖励（提升经验的生效效果）；可用时，导出按钮会以粗体文字与变色标记
+    - 旅行现在会推进游戏内计时，影响除导出奖励外的所有生效效果的持续时间；旅行时间随技能（主要是「奔跑」）变化
+    - 新增了降雨与降雪的前景动画，以及晴夜星空的背景动画；<b>它们默认关闭，可在选项面板中开启</b>
+    - 市场饱和系统现在覆盖除消耗品以外的所有物品；对装备与部件的成长更严苛
+    - 市场饱和已按地区拆分（目前为：村庄与贫民区），饱和会缓慢在各地区之间流动直到平衡；对已有存档，饱和值已在各地区之间平均分配
+    - 新增了一些（准确说是一个）从对话层级发起的行动
+    - 新增了装备类别披风；其材料成本相当高，但在所有物品类型中提供最强的防寒，还能让你感觉自己很气派
+    - 新增了两个可从<span class="spoiler">「林间道路」</span>进入的战斗区域，提供新的敌人和一种新的护甲制作材料
+    - 在<span class="spoiler">「镇郊」</span>新增了一些行动与相关战斗区域，处理完野猪之后，完成它会从「林间道路」解锁另一个战斗区域；其中的敌人目前还没有任何掉落
+    - 新增了另一种架势，可在<span class="spoiler">帮助「贫民区」之后从「可疑的人」处获得（它其实早已存在，只是无法解锁）；
+        一如所有新解锁，如果你已经用过了本该解锁它的台词，可以从可重复的那条获取</span>
+    - 新增了技能<span class="spoiler">「再生」，可提升被动治疗（睡眠/休息）的效果</span>
+    - 新增了技能<span class="spoiler">「暴食」，与「医术」互补，可提升食物类物品的效果（与医术不同，它不会从制作中获得经验）</span>
+    - 新增了技能与训练：<span class="spoiler">「游泳」</span>，在满足某些特殊条件后于<span class="spoiler">「村庄」</span>开放（提示：训练）
+    - 新增了技能<span class="spoiler">「坚毅」，可提升生命上限，并在你受到伤害时获得经验，类似「坚韧皮肤」，不过它随受到的伤害成长，而不随敌人的经验值</span>
+    - 新增了技能与相关物品：<span class="spoiler">「挖掘」和2把铲子，用于采集沙子（参见：玻璃制作，见本版本更新日志末尾）</span>
+    - 新增了技能<span class="spoiler">「耐寒」，每级提升0.5点寒冷耐受，角色处于寒冷环境时会以较低速率被动获得经验</span>
+    - 将「制作」更名为「修补」，并新增父技能：<span class="spoiler">「制作精通」，涵盖「修补」「屠宰」与「木工」（后两者详见本版本更新日志末尾）</span>
+    - 在<span class="spoiler">「山间小径」与「山间营地」</span>新增了训练「平衡」的地点
+    - 在<span class="spoiler">「山间营地」</span>新增了训练「攀爬」的地点
+    - 新增了书籍<span class="spoiler">《奇思颂及其他诗篇》，在任何商人处都可出现，但几率很低</span>
+    - 新增了消耗品<span class="spoiler">「面包克瓦斯」，由2份任意面包和一个玻璃瓶（由3份玻璃制作）制成，可提供额外的体力回复；效果虽不高于面包，但它属于另一种效果，因此可以叠加</span>
+    - 在「数据」标签页新增了声望显示（它目前仍然没有任何作用）
+    - 新增了一枚护符，让你终于能填满那个装备栏位，可通过<span class="spoiler">首次通关某个新战斗区域作为掉落获得</span>
+    - 被击杀现在会施加一个减益，5个游戏内分钟内经验获取降至1/5，作为一项可能并不必要的防刷措施
 
-    - 'Persistence' skill's xp gains are now doubled when under 20% hp (you still need to be out of stamina); they are also increased when under any cold effect, the stronger the more, up to x2 at 'Hypothermia' (although there's also a massive xp reduction from later cold effects, so it's far from being worth it)
-    - 'Unarmed' skill now provides additional +0.1 base dmg to unarmed attacks (original base was 1, this means by lvl 10 dmg will be doubled)
-    - 'Tough skin' skill is now back to only receiving xp when you wear no armor
-    - 'Tough skin' skill received some changes to when the name changes (duh)
-    - 'Sleeping' skill provides a bit less of hp
-    - 'Meditation' skill now provides some 'Strength of mind' xp multipliers
-    - 'Meditation' skill now provides a small intuition multiplier
-    - 'Strength of Mind' skill now requires 120->400 xp for first level, but cost scaling was reduced x1.9->x1.7
-    - 'Breathing' skill now requires 300->400xp for first level
-    - "Wolf trophy" now gives flat armor penetration instead of attack speed
-    - hero level xp cost scaling was reduced x1.7->x1.6
-    - exponent on crafting xp has been reduced ^1.2->^1.1
-    - condition to unlock first combat task in 'Town farms' was changed from clearing a specific location to clearing one of a three (each in a different region)
-    - equippables unaffected by quality will no longer display it (trinkets, tools, artifacts, etc)
-    - increased defense on a bunch of enemies
-    - increased value of trinkets
-    - slightly nerfed active effects from food, as more of them are now available
-    - some location type penalties now scale up to certain level instead of up to skill max level; scaling information was removed from skill descriptions
-    - fieldwork in Village / Town Farms is now unavailable during winters
-    - removed defense on wool items
-    - for multi-target attacks, xp gains are now divided by target count to provide similar xp gains as with single-target attacks
-    - for fighting against a group, xp gains for skills that gain xp when enemy attacks are now divided by target count ^ (2/3) (fighting 8 enemies will only give 2x xp of one)
-    - for multi-target attacks, loot drop chances are now divided by target count ^ (2/3) (killing 8 enemies with 1 attack should only give 2x loot instead of 8x)
-    - recipes requiring enemy drops are now slightly cheaper to make
-    - xp gains for skills are now capped based on what's required for a level up, at 1/10th for general skills and at 1/4th for crafting skill; this generally won't have much impact on gameplay and will only affect some rare cases of extreme gains connected with very low skill level
-    - hp bar, stamina bar, and xp bar, now have basic tooltips with breakdows (max health, max stamina and stamina efficiency, global/hero/all_skill xp multiplier)
-    - updated 'Sleeping' skill's tooltip so that it mentions the increase to sleeping health restoration (mechanic already existed, but was missing from tooltip)
-    - message log will now only scroll down for messages that belong to displayed categories, stuff that is hidden will not cause a scrolling to happen
-    - work payments have been increased
-    - trader profit margins were increased
-    - increased trade price recovery per day (it's still very low and shouldn't be relied on)
-    - increased duration of both types of 'Healing Powder'
-    - slightly buffed xp gains for gathering tier 3 wood/metal
-    - in dialogues, name of the one being talked to is now displayed above the answers
-    - added very simple click effects to some buttons
-    - added simple animations to enemies when hit
-    - added color change on hover to some elements
-    - dialogue descriptions and textline answers now have a basic fade-in animation
-    - notifications for unlocking a gathering activity now only appear if gathering is globally unlocked
-    - reduced 'Wall Rat' agility from 20 to 2 (where are they gonna go? they are stuck in place)
-    - increased 'Wall Rat' health 1000->2000 and dexterity 90->120
-    - increased 'Elite wolf rat guardian' health 250->400, attack 50->60, agility 40->50, dexterity 40->50, xp value 10->15
-    - increased 'Young wolf' health 120->150
-    - increased 'Starving wolf' health 150->200
-    - increased 'Wolf' health 200->250, attack 32->40, agility 42->50, dexterity 42->50, intuition 32->40, xp value 4->6
-    - increase 'Boar' health 300->600, xp value 8->10
+    - 「坚持」技能在生命低于20%时经验获取翻倍（仍需耗尽体力）；处于任何寒冷效果下时也会提升，效果越强提升越多，「失温」时最高为x2（不过更后面的寒冷效果会带来巨量经验削减，所以并不划算）
+    - 「徒手」技能现在为徒手攻击额外提供+0.1基础伤害（原本基础为1，这意味着10级时伤害会翻倍）
+    - 「坚韧皮肤」技能恢复为只有不穿护甲时才能获得经验
+    - 「坚韧皮肤」技能在改名时机上做了一些调整（废话）
+    - 「睡眠」技能提供的生命略少
+    - 「冥想」技能现在提供一些「心志之力」经验倍率
+    - 「冥想」技能现在提供少量直觉倍率
+    - 「心志之力」技能首级所需经验由120提升至400，但消耗成长由x1.9降低至x1.7
+    - 「呼吸」技能首级所需经验由300提升至400
+    - 「狼的战利品」现在提供固定护甲穿透，而非攻击速度
+    - 英雄等级的经验消耗成长由x1.7降低至x1.6
+    - 制作经验的指数由^1.2降低至^1.1
+    - 「镇郊」中首个战斗任务的解锁条件，由清理某个特定地点改为清理三个地点之一（各位于不同地区）
+    - 不受品质影响的装备将不再显示品质（饰品、工具、器物等）
+    - 提升了大量敌人的防御
+    - 提升了饰品的价值
+    - 略微削弱了食物的生效效果，因为现在可获得的食物更多了
+    - 部分地点类型减益现在只成长到特定等级，而不再成长到技能最高等级；技能描述中的成长信息已移除
+    - 村庄／镇郊的田间劳作在冬季不再可用
+    - 移除了羊毛物品的防御
+    - 多目标攻击的经验获取现在按目标数量均分，使收益与单体攻击相近
+    - 对抗一群敌人时，在敌人攻击时获得经验的技能，其经验按目标数量的(2/3)次方均分（同时打8个敌人只能获得单个敌人的2倍经验）
+    - 多目标攻击的战利品掉落几率现在按目标数量的(2/3)次方均分（用一次攻击击杀8个敌人应只获得2倍战利品，而非8倍）
+    - 需要敌人掉落的配方现在制作成本略低
+    - 技能的经验获取现在按升级所需经验设有上限，通用技能为1/10，制作技能为1/4；这通常对游玩影响不大，只会影响技能等级极低时获得极端经验的少数情况
+    - 生命条、体力条与经验条现在有基础提示框，显示明细（生命上限、体力上限与体力效率、全局/英雄/全技能经验倍率）
+    - 更新了「睡眠」技能的提示框，说明其对睡眠生命恢复的提升（该机制本已存在，只是提示框里漏了）
+    - 消息记录现在只会为属于已显示类别的消息向下滚动，被隐藏的内容不会触发滚动
+    - 提高了工作报酬
+    - 提高了商人的利润率
+    - 提高了每日交易价格恢复（仍然很低，不应依赖）
+    - 延长了两种「治疗药粉」的持续时间
+    - 略微提升了采集3级木材/金属的经验获取
+    - 对话中，交谈对象的名字现在显示在答案上方
+    - 为部分按钮新增了非常简单的点击效果
+    - 为敌人受击时新增了简单动画
+    - 为部分元素新增了悬停时的颜色变化
+    - 对话描述与台词答案现在有基础的淡入动画
+    - 解锁采集活动的通知现在只在采集已全局解锁时出现
+    - 「墙鼠」的敏捷由20降至2（它们能去哪？它们被困在原地）
+    - 提升了「墙鼠」的生命1000→2000，灵巧90→120
+    - 提升了「精英狼鼠守卫」的生命250→400、攻击50→60、敏捷40→50、灵巧40→50、经验值10→15
+    - 提升了「幼狼」的生命120→150
+    - 提升了「饿狼」的生命150→200
+    - 提升了「狼」的生命200→250、攻击32→40、敏捷42→50、灵巧42→50、直觉32→40、经验值4→6
+    - 提升了「野猪」的生命300→600，经验值8→10
 
-    - implemented dialogue branching (clicking a textline can show more textlines that are a continuation of the topic), not yet in use
-    - implemented content stack that holds information on what's currently shown and what it originated from, 
-        realistically serves just for aforementioned starting actions from dialogue level and for branching,
-        but handles everything that's not a location display (which is the default state for when stack is empty)
-    - updated enemy lineup creation code to allow using predefined groups in their order (instead of choosing one randomly),
-    and to allow using a predefined group every N clears while remaining fights use random enemies
-    - jobs can now be made available only in selected seasons; overall time-based limitation was extended to cover training actions as well
-    - actions can now have conditions for being displayed
-    - textlines can now have conditions for being displayed, using same template as actions do
-    - conditions can now include global flags and equipped tools
-    - locations can now include rewards provided for simply entering them (obviously meant for unlocks only)
-    - item names can now be skipped in item creation, which will default them to same as item's id
-    - made it possible for activities to apply active effects
-    - made it possible for active effects to affect xp gains
-    - changed color of checkboxes to blue, instead of using browser's default colors
-    - slightly changed display style of crafting category buttons to hopefully make it a little bit less messy
-    - removed some unused location types related to temperatures as those were implemented as a part of weather instead
+    - 新增了对话分支（点击台词可显示该话题延续的更多台词），尚未启用
+    - 新增了内容栈，用于记录当前显示的内容及其来源，
+        实际上只服务于前述从对话层级发起的行动与分支，
+        但会处理地点显示之外的所有内容（地点显示是栈为空时的默认状态）
+    - 更新了敌人阵容生成代码，允许按顺序使用预定义编组（而非随机选择一个），
+    并允许每N次清理使用一次预定义编组，其余战斗仍使用随机敌人
+    - 工作现在可以只在选定季节开放；整体的时间限制也扩展到训练行动
+    - 行动现在可以带有显示条件
+    - 台词现在可以带有显示条件，使用与行动相同的模板
+    - 条件现在可以包含全局标记与已装备的工具
+    - 地点现在可以包含仅仅进入就给予的奖励（显然只用于解锁）
+    - 创建物品时现在可以跳过物品名称，此时默认与物品id相同
+    - 使活动能够施加生效效果
+    - 使生效效果能够影响经验获取
+    - 将复选框颜色改为蓝色，不再使用浏览器的默认颜色
+    - 略微调整了制作分类按钮的显示样式，希望看起来不那么杂乱
+    - 移除了部分与温度相关的未使用地点类型，因为这些已作为天气的一部分实现
     
-    - fixed component/equipment crafting xp formulas, they now work as described on help page, with scaling starting at 8*tier delayed by sqrt of rarity multiplier (earlier it scaled at every point)
-    - fixed a mistake in enemy lineup creation code that resulted in enemy group size capping at 1 less than intended
-    - fixed an issue with incorrect display of some of game settings after reloading
-    - fixed a minor bug where book bonuses needed save+reload to be properly applied
-    - fixed an error on beating a challenge zone that was in favourites
-    - fixed a minor multi-crafting bug where if the result was not an integer, the chance for the fraction to be turned into 1 additional item was calculated incorrectly
-    - fixed a minor display bug where traded items always ended up at the bottom of respective container, even moving the entire stack down if they were already present there
+    - 修复了部件/装备制作经验公式，现在与帮助页面所述一致：成长从8*阶级开始，并按品质倍率的平方根延后（此前每一点都会成长）
+    - 修复了敌人阵容生成代码中的一处错误，该错误导致敌人编组规模上限比预期少1
+    - 修复了重新载入后部分游戏设置显示不正确的问题
+    - 修复了书籍加成需要存档并重新载入才能正确生效的小问题
+    - 修复了通关收藏中的挑战区域时出现的错误
+    - 修复了批量制作的一个小问题：当结果不是整数时，小数转为1个额外物品的几率计算有误
+    - 修复了交易物品的一个显示小问题：它们总是落在相应容器的底部，若原本已存在于其中还会把整堆下移
 
-    courtesy of OnonokiNonon:
-        - glassmaking module, including 1 new book, 1 new activity, 3 new items and 3 new recipes
-        - added 2 new crafting skills: <span class="spoiler"> 'Butchering' and 'Woodworking', with the former also affecting some drop rates; moved relevant recipes from 'Crafting'; 'Butchering and you' now unlocks the skill instead of recipes </span>
-        - skill categories can now be reordered
-        - a new dialogue that unlocks 2 more food items with their recipes, and a gathering activity for one of their ingredients
-        - tweaks to recipe listing code, to make future categories easier to add (a bit of WIP)
-        - the recipe window now remembers the last open tab
-        - fixed display issues with inventory and fast travel on Firefox
-        - maxed out skills are now displayed with a darker shade of green
-        - skill categories now persist their open/closed state
-        - skills can now be sorted by progress (how close they are to next level, with maxed out skills always displayed last)
-        - inventory can now by sorted by type: components/materials of the same type are grouped together, equipment is sorted by slot, etc.
-        - harvesting actions can now have their own ambience (BGM) messages
-        - actions that give experience now show time to level up in realtime hours
-        - larger xp numbers now display with separators and switch to scientific notation at a much higher threshold
-        - added a new category to the journal, listing all the books Hero has read and their effects
+    感谢 OnonokiNonon：
+        - 玻璃制作模块，包含1本新书、1项新活动、3件新物品和3个新配方
+        - 新增了2个制作技能：<span class="spoiler">「屠宰」与「木工」，前者还会影响部分掉落率；相关配方已从「制作」移出；《屠宰与你》现在解锁的是该技能而非配方</span>
+        - 技能分类现在可以重新排序
+        - 新增了一段对话，可解锁2种食物及其配方，以及针对其中一种材料的采集活动
+        - 调整了配方列表相关代码，让以后添加新分类更容易（仍在进行中）
+        - 配方窗口现在会记住上次打开的标签页
+        - 修复了在Firefox上背包与快速旅行显示异常的问题
+        - 已满级的技能现在用更深的绿色显示
+        - 技能分类现在会保留展开／收起状态
+        - 技能现在可以按进度排序（距离下一级的进度，已满级的技能始终排在最后）
+        - 背包现在可以按类型排序：同类型的部件／材料归在一起，装备按部位排序，等等
+        - 采集行动现在可以有自己的环境音（BGM）提示
+        - 给予经验的行动现在会以实时小时数显示升级所需时间
+        - 较大的经验数值现在会带分隔符显示，并在高得多的阈值才切换为科学计数法
+        - 在日志中新增了一个分类，列出主角读过的所有书籍及其效果
 
 v0.5.0.1
-    - fixed a bug where having environmental skill at high enough level turned the penalty into a positive effect
-    - fixed a bug with health loss stat working the opposite of how it was intended to
-    - increased material cost of 'Rat pelt cape' by half (wolf rats are kinda small)
-    - fixed rounding in 'Unarmed' skill description
+    - 修复了环境技能等级足够高时，其惩罚反而变成正面效果的bug
+    - 修复了生命损失属性的效果与预期相反的问题
+    - 「鼠皮毛披风」的材料消耗提高了50%（狼鼠个头本来就小）
+    - 修复了「徒手」技能描述中的取整问题
 v0.5.0.2
-    - fixed a bug that made digging activity impossible
-    - removed quest progress notifications for progress awarded automatically on loading pre-quests saves
+    - 修复了导致挖掘活动无法进行的bug
+    - 移除了读取任务前的存档时自动发放进度所触发的任务进度通知
 v0.5.0.3
-    - backwards compatibility for having cleared one of locations with newly added rewards-that-require-certain-clearcount
+    - 为「已清除某个地点，而新加入的奖励需要特定清除次数」的情况补充了向后兼容
 v0.5.0.4
-    - now that previous fix actually works
-    - removed some repeating messages on loading
-    - fixed a typo
+    - 上一次修复现在才真正生效
+    - 移除了读取存档时重复出现的一些消息
+    - 修正了一处错别字
 v0.5.0.5
-    - fixed a bug with "Bears' den" not being connected to its parent location
+    - 修复了「熊窝」未连接到其上级地点的问题
 v0.5.0.6
-    - fixed a bug with 'Gluttony' skill effect not working due to missing tags on effects
-    - fixed a bug with defense being ignored and with armor penetration sometimes providing more bonus than it should
-    - fixed bugs with skill xp gains formula (global bonus applied twice, skill-specific bonus not applied at all)
-    - fixed a bug where books and non-consumables were unaffected by trader profit margins
-    - fixed a bug with total earnings (and time to reach them) not being displayed while working
-    - fixed a display issue when too many quests were expanded
-    - fixed a bug with 'Meditation' intuition bonus being a flat increase instead of a multiplier
-    - fixed a display bug with celsius and cahrenheit temperatures being displayed with same value (celsius) in roofed locations
-    - fixed bug with 'Processed weak monster bone' not being available for crafting
-    - fixed a bug where selling a stack of certain item types and then doing save/load would result in trader only having 1 of it
+    - 修复了「暴食」技能因效果缺少标签而失效的问题
+    - 修复了防御被忽略，以及护甲穿透有时提供过多加成的问题
+    - 修复了技能经验获取公式的多个bug（全局加成被应用了两次，技能专属加成则完全没有生效）
+    - 修复了书籍与不可消耗品不受商人利润率影响的问题
+    - 修复了工作时总收入（以及达到该收入所需时间）不显示的问题
+    - 修复了展开过多任务时的显示异常
+    - 修复了「冥想」的直觉加成被当作固定值而非倍率的问题
+    - 修复了在室内地点摄氏与华氏温度显示为同一数值（摄氏度）的显示bug
+    - 修复了「加工过的弱小怪物骨」无法用于制作的问题
+    - 修复了卖出整堆某类物品后存档／读档、商人处只剩1个该物品的问题
 
-    - buffed 'Forest bear': health 3000->6000, attack 300->600, intuition 100->200, attack speed 0.7->0.8, defense 300->500, xp 30->50
-    - buffed 'Wall rat': hewalth 2000->4000, attack 70->100, intuition 90->200, attack count 3->4
-    - increased some of the travel times
+    - 增强了「森林熊」：生命3000->6000，攻击300->600，直觉100->200，攻击速度0.7->0.8，防御300->500，经验30->50
+    - 增强了「墙鼠」：生命2000->4000，攻击70->100，直觉90->200，攻击次数3->4
+    - 提高了部分旅行时间
 v0.5.0.7
-    - fixed a bug that made it possible to be unable to properly access later stage of the farm quest (incorrect conditions in backwards compatibility)
-    - fixed a display issue with crafting components extending over the 'Exit' button
-    - fixed a display issue with certain crafting tooltips upon closing and re-opening the crafting window
-    - 'Broad arc' now reduces attack speed to x0.8
+    - 修复了可能导致无法正常进入农田任务后续阶段的bug（向后兼容的条件判断有误）
+    - 修复了制作材料溢出到「退出」按钮上的显示异常
+    - 修复了关闭并重新打开制作窗口后，部分制作提示框显示异常的问题
+    - 「大弧斩」现在会将攻击速度降低至x0.8
 v0.5.0.8
-    - fixed an issue with enemy stat display not fitting in one line
-    - hopefully fixed an issue with enemy onhit animation not running on subsequent hits; changed how they appear after enemy group gets defeated
-    - fixed a display issue with anthology tooltips not updating skill names and keeping them as "???"
-    - skill xp gains in combat against a group are multiplied by enemy count to 1/3 (fighting 8 enemies will give double xp), just like it already was for hero xp
+    - 修复了敌人属性显示无法放进一行的问题
+    - 希望能修复敌人受击动画在后续命中时不播放的问题；并改变了敌人群体被击败后的显示方式
+    - 修复了文集提示框不更新技能名称、始终显示为「???」的显示异常
+    - 群体战斗中的技能经验获取按敌人数量以1/3为系数乘算（打8个敌人可获得双倍经验），与主角经验的既有规则一致
 v0.5.0.9
-    - fixed a bug with crafting display that, when triggered, resulted in a serious error and inability to do anything that would load the main display of 'Village'
-    - added normal iron items to village trader; slightly reduced chances for steel weapons to appear in pre-hideout slums trader
+    - 修复了制作界面的一处显示bug，该bug触发后会导致严重错误，并且无法进行任何会加载「村庄」主界面的操作
+    - 为村庄商人加入了普通铁制物品；略微降低了钢制武器在据点前贫民区商人处出现的概率
 v0.5.0.10
-    - fixed a bug with xp gain caps not working
-    - moved a textline unlock in 'Suspicious guy' from clearing a location to instead informing him after clearing it
-    - added regeneration breakdowns to health bar and stamina bar; these do not include passive non-combat regeneration
-    - undid the change to enemy animation handling upon group defeat from v0.5.0.8, added a separate animation for new enemies instead
-    - doing a hard reset on dev release should no longer result in still importing a main release savefile but instead allow you to start from scratch
-    - increased base xp cost for "Regeneration" 600->1000, increased scaling x1.4->x1.5
-    - action to climb up the mountain now rewards some "Climbing" xp on success
-    - beating the 'Gang hideout' now rewards a bit of money (as an implied loot)
-    - updated evasion/blocking skill tooltips to clarify that it's either one or another and that you cannot do both simultanously
-    - tweaked one of 'Village guard' textlines
-    - slightly tweaked some descriptions, mostly removing '.' from items to make them more consistent
+    - 修复了经验获取上限不生效的bug
+    - 将「可疑家伙」的一条台词解锁条件从清除某地点改为清除后告知他
+    - 为生命条与体力条加入了回复明细；其中不含非战斗状态下的被动回复
+    - 撤销了v0.5.0.8对敌人群体被击败后动画处理的改动，改为给新出现的敌人添加单独动画
+    - 在开发版中执行硬重置后，不再会仍然导入正式版存档，而是可以从头开始
+    - 提高了「回复」的基础经验消耗600->1000，提高了成长系数x1.4->x1.5
+    - 爬上山峰的行动现在成功后会给予一定「攀爬」经验
+    - 击败「帮派据点」现在会奖励一些钱（作为隐含的战利品）
+    - 更新了闪避／格挡技能的提示框，说明二者只能择一，不能同时使用
+    - 调整了「村庄守卫」的一条台词
+    - 略微调整了部分描述，主要是去掉物品描述末尾的「.」以保持一致
 v0.5.0.11
-    - added a training shield that doesn't scale with skill and stays at 0.5 block
-    - [hopefully] fixed a bug with price slightly dropping when adding a different item of same trade group to selling
-    - lowered xp reward for farm quest from 100k to 50k
-    - tweaked some more descriptions in same way as in v0.5.0.10
-    - tweaked unlock text and trade text for village trader to give vibes more fitting of a supposedly "medium-sized village", increased the count of some items there for same reason
-    - fixed a display issue with bestiary content going outside the box
-    - tweaked display of some tooltips to better match the size of their content
-    - slightly changed display of enemy attack power in combat for multi-attack enemies, to remove confusion on which is the damage and which is the count 
+    - 新增了训练用盾牌，不随技能成长，格挡固定为0.5
+    - [希望如此]修复了在出售中加入同一交易组的其他物品时价格略微下降的bug
+    - 将农田任务的经验奖励从100k降低到50k
+    - 以v0.5.0.10相同的方式又调整了一些描述
+    - 调整了村庄商人的解锁文本与交易文本，使其更贴合一个所谓「中等规模村庄」的氛围，并出于同样原因提高了部分物品的数量
+    - 修复了图鉴内容溢出框外的显示异常
+    - 调整了部分提示框的显示，使其更贴合内容大小
+    - 略微改动了战斗中多段攻击敌人的攻击力显示，以免分不清哪个是伤害、哪个是次数
 v0.5.0.12
-    - fixed: 'Bear hide cape should now be craftable
-    - 'Iron shovel' can now be found in slums trader
-    - 'Bear hide cape' can now be found in slums trader post-gang
-    - removed even more periods from descriptions
+    - 修复：「熊皮斗篷」现在可以制作了
+    - 「铁铲」现在可以在贫民区商人处买到
+    - 「熊皮斗篷」现在可以在据点事件后的贫民区商人处买到
+    - 又去掉了更多描述中的句点
 v0.5.0.13
-    - fixed a bug with shield strength being always treated as 1
+    - 修复了盾牌强度始终被当作1的bug
 v0.5.0.14
-    - another attempt at fixing trade
-    - added coal to trader inventories
-    - increased cold tolerance on wool gloves 2->3
-    - unique items are now marked as such in their tooltips
-    - village guard is now a woman
-    - fixed incorrect description on "Bear's den"
+    - 又一次尝试修复交易
+    - 为商人库存加入了煤
+    - 羊毛手套的耐寒提高2->3
+    - 独特物品现在会在提示框中标注出来
+    - 村庄守卫现在是一名女性
+    - 修复了「熊窝」描述错误的问题
 v0.5.0.15
-    - trade fixes again, yes, send help
-    - tweaked combat stat display
+    - 又是交易修复，对，快来帮忙
+    - 调整了战斗属性显示
 v0.5.0.16
-    - added uncraftable "Work shoes" with 0 defense and a lot better attack speed / agility bonuses than cheap leather, available from all traders
-    - reduced impact of lower tier items on market saturation from 1/2 of the cap to 1/8 of the cap
-    - tweaked combat stat display again
-    - tweaked some dialogues a little bit
+    - 新增了不可制作的「工作鞋」，防御为0，攻击速度／敏捷加成远好于廉价皮革鞋，所有商人均有售
+    - 将低阶物品对市场饱和的影响从上限的1/2降低到上限的1/8
+    - 再次调整了战斗属性显示
+    - 略微调整了一些对话
 v0.5.0.17
-    - conditions object can now include reputation, hid one of village guard's textlines behind it (with currently unreachable goal) as it was not yet ready
-    - tweaked time formatting a little bit
+    - 条件对象现在可以包含声望，并据此隐藏了村庄守卫的一条台词（目标目前无法达成），因为该台词尚未完成
+    - 略微调整了时间格式
 v0.5.0.18
-    - slightly changed the way prices are calculated when trading multiple of same item (or same group), as the previous approach resulted in slightly incorrect results
-    - fixed time formatting after a tiny little whoopsie in last patch
-    - reputation is now recalculated on load instead of being saved
-    - manual stance switching can no longer give "Persistence" xp when out of stamina
+    - 略微改动了交易多个同种（或同组）物品时的价格计算方式，因为之前的做法会得出略有偏差的结果
+    - 修复了上个补丁中一个小小失误造成的时间格式问题
+    - 声望现在在读取存档时重新计算，而不再随存档保存
+    - 体力耗尽时手动切换架势不再给予「坚持」经验
 v0.5.0.19
-    - fixed another bug with trade prices (again mismatch between displayed vs actual)
-    - fixed a bug where buying items back only reduced the relevant market saturation by 1, no matter the actual count
-    - tools no longer get auto-sorted to be above other equippables in inventory, as similar effect of grouping them together can be achieved with "sort by type"
-    - equipment changing can no longer give "Persistence" xp when out of stamina
+    - 修复了交易价格的另一个bug（显示与实际仍然不一致）
+    - 修复了买回物品时无论实际数量多少、相关市场饱和都只减少1的bug
+    - 工具在背包中不再被自动排到其他可装备物品之上，因为「按类型排序」也能达到把它们归在一起的效果
+    - 体力耗尽时更换装备不再给予「坚持」经验
 v0.5.0.20
-    - fixed incorrect conditions for background animations
-    - tweaked time formatting again
-    - effect of kwas is now tagged as 'food' and subject to 'Gluttony' skill
+    - 修复了背景动画条件错误的问题
+    - 再次调整了时间格式
+    - 克瓦斯的效果现在被标记为「食物」，并受「暴食」技能影响
 v0.5.0.21
-    - fixed a bug with time progression not working as intended on bigger increases (fast travelling in last minutes of a day/month/year lead to skipping 1 more than it should)
-    - fixed a bug that defaulted prices to 1 if item's sold count was big enough to break precision and, due to silly code logic, make low numbers meaningless (which required another not-yet-confirmed bug to even happen in the first place)
-    - fixed an issue with trade price recovery not working
-    - slightly nerfed some food effects
+    - 修复了时间推进在较大增量下未按预期工作的问题（在一天／一个月／一年的最后几分钟快速旅行会多跳过1）
+    - 修复了物品售出数量大到足以破坏精度时价格会被默认设为1的bug——由于代码逻辑愚蠢，小数值会变得毫无意义（而且还得先有另一个尚未确认的bug才会发生）
+    - 修复了交易价格恢复不生效的问题
+    - 略微削弱了一些食物效果
 v0.5.0.22
-    - fixed a bug where market saturation trickling was behaving incorrectly and capable of causing sold counts to climb to absurdly high levels (leading to 2nd bug fixed in previous version)
-        - all saves from previous v0.5.0 version will have related values adjusted on game loading
+    - 修复了市场饱和回落的运作不正确、并可能让售出数量攀升到荒谬高位的bug（这也是上一个版本修复的第二个bug的成因）
+        - 所有来自旧版v0.5.0的存档将在游戏加载时自动调整相关数值
 v0.5.0.23
-    - fixed a minor bug when clearing a faved self-locking location
-    - dealt with some potentially buggy behaviour
-    - tweaked some skill descriptions
-    - added onhover color change for quest headers
+    - 修复了清除已收藏的自锁地点时的一个小bug
+    - 处理了一些可能出问题的行为
+    - 调整了部分技能描述
+    - 为任务标题加入了鼠标悬停时的颜色变化
 v0.5.0.24
-    - fixed a minor display bug where trader multiplier was not included in displayed prices for items that don't saturate market (food and books)
+    - 修复了一处小的显示bug：对于不会造成市场饱和的物品（食物与书籍），显示价格未计入商人倍率
 v0.5.0.25
-    - fixed a minor display bug with enemy blocks being a tiny bit too tall and going out of designated space
+    - 修复了一处小的显示bug：敌人的格挡条略高，超出了预留空间
 v0.5.0.26
-    - courtesy of Mercurius: tweak to avoid data retention that could've potentially lead to dangerous increase in memory usage
-    - increased xp rewards for clearing some early locations
-    - replies in dialogues are now aligned to left instead of being centered
+    - 感谢 Mercurius：调整了数据保留逻辑，避免可能导致内存占用危险增长的滞留数据
+    - 提高了清理部分早期地点的经验奖励
+    - 对话中的回复选项现在改为左对齐，不再居中
 v0.5.0.27
-    - fixed a bug with finishing actions
+    - 修复了完成行动时出现的错误
 v0.5.0.28
-    - fixed a bug with drop chances, where penalty for attack target count used the size of enemy group instead, no matter how many were being attacked at once
-    - fixed a bug where xp gains per tick for every book were being defaulted to 1 instead of using whatever values were assigned    
+    - 修复了掉落概率的错误：攻击目标数量带来的惩罚错误地按敌人群体总数计算，而不论一次实际攻击了多少个目标
+    - 修复了每本书每次结算的经验获取被默认设为1、而未使用其设定值的错误
 </pre></div>
-<button type="button" class="collapsible">v0.4.6 - Actions (and some other things too) [testing release: 01/04/2025 / main release: 18/05/2025] </button>
+<button type="button" class="collapsible">v0.4.6 - 行动（以及其他一些东西） [测试版：01/04/2025 / 正式版：18/05/2025] </button>
 <div class="content"><pre>
 v0.4.6
-    - implemented new feature, location actions. Unlike trainings, they are generally a one-time thing that provides unlocks and other rewards.
-        They can take different time to complete; have different conditions that are not fully specified but will be hinted at by descriptions; 
-        might check if conditions are met either before or after the attempt and may either be guaranteed to succeed if so or just have a chance for it,
-        with the latter case having different messages for when you failed due to not meeting requirements vs when you were just unlucky and could succeed next time
+    - 实装了新功能：地点行动。与训练不同，它们通常是一次性的，用于提供解锁与其他奖励。
+        它们完成所需的时间各不相同；也各有不同的条件，条件不会完全写明，但会由描述给出提示；
+        可能在尝试之前或之后检查条件是否满足，满足时既可能是必定成功，也可能只是提高成功的概率，
+        后一种情况下，因条件不足而失败与只是运气不好、下次仍可能成功，会显示不同的提示
     
-    - made it possible to craft multiple items/components/equips at once (x5/x10/all)
-    - added a mechanic of bonus skill levels (e.g. from better tools); these only apply to the basic effects and do not affect milestones
-    - implemented personal storage, available at any place with bed, with shared content
-    - added fast travel button, allowing quick moving between locations with unlocked beds and/or last combat location (move here from the normal travel category)
+    - 现在可以一次性制作多个物品/部件/装备（x5/x10/全部）
+    - 新增了技能等级加成的机制（例如来自更好的工具）；这些加成只作用于基础效果，不影响里程碑
+    - 实装了个人储物，在任何有床的地点均可使用，内容互通
+    - 新增了快速旅行按钮，可在已解锁床铺的地点之间以及上次的战斗地点之间快速移动（已从常规旅行分类中移到这里）
 
-    - added multiple new locations and combat areas: <span class="spoiler">
-    * bandit hideout in slums
-    * two locations (one normal, one combat) after opening the 'mysterious gate' (The Rat Saga continues)
-    * multiple mountain locations (one boss, one combat, a few normal + a camp) after climbing up (unlocked by beating one of cave locations)</span>
-    - added better tools for gathering materials
-    - added a new crafting material, coal, which is now used in all smelting recipes
-        It's own recipe is named "charcoal", don't be confused
-        It is crafted with any "raw" wood, using cheapest first. 
-        Multicrafting will only use one material type on each click, to avoid accidentally burning higher tiers (ha, got it?)
-    - added new metal of tier 3, steel, which requires iron + a new ore to craft; added corresponding weapon components; steel unlocked by:<span class="spoiler">
-        Reaching level 15 in Forging skill; needed ore unlocked by beating 'mysterious gate'</span>
-    - added ash wood and ash wood components, added weak monster bone components; both are tier 3
-    - new activity: climbing
-    - new skills: Climbing, Breathing, Medicine. Breathing gains xp passively at a low rate (which increases x5 when in any training)
-    - two new books, both unlock "new" recipes (lots of them already existed and simply got locked behind this) + one of them unlocks Medicine skill
-    - slightly buffed 'weak healing powder' and 'weak healing potion', added stronger versions of both
-    - added some other new ingredients and consumables
-    - added miscellaneous items 'coil of rope' and 'camping supplies', each is currently only used for a singular action
-    - new spot for meditation + another milestone for the skill
-    - skills for gathering materials now belong to a separate skill category (instead of 'Activity skills')
-    - 'high quality wolf fang' and 'high quality boar tusk' can now be crafted from 50 normal versions each
-    - location navigation now uses similar structure as skill display, that is they are grouped together and expand on click
-    - made it possible for xp multipliers to affect entire skill categories (e.g. all 'Activity' skills)
-    - item rarity rank is now directly displayed in tooltip (before that you had to guess from the color/quality)
-    - tooltips for relevant crafting skills now show quality caps
-    - activities (job, training, resource gathering) now display the time needed to level up their related skill 
-        (with in-game time format, e.g. 24 hours mean 24 irl minutes at standard tickrate)
-    - slightly expanded some skill milestones
-    - added a Ko-fi icon with link to my page on the right side of the bottom bar
+    - 新增了多个新地点与战斗区域：<span class="spoiler">
+    * 贫民区的强盗据点
+    * 打开「神秘之门」后的两个地点（一个普通地点、一个战斗地点）（鼠之传奇仍在继续）
+    * 攀爬上去后的多个山地区域地点（一个首领、一个战斗、若干普通地点加一个营地）（通过击败某个洞穴地点解锁）</span>
+    - 新增了更好的采集材料工具
+    - 新增了新的制作材料：煤，现在所有熔炼配方都会用到它
+        它自身的配方名为「木炭」，不要混淆
+        它用任意「原木」木材制作，优先消耗最便宜的。
+        批量制作在每次点击时只会使用一种材料，以免不小心烧掉更高阶的材料（哈，懂了吧？）
+    - 新增了3阶新金属：钢，需要用铁加一种新矿石制作；并新增了对应的武器部件；钢的解锁条件为：<span class="spoiler">
+        锻造技能达到15级；所需矿石通过击败「神秘之门」解锁</span>
+    - 新增了白蜡木与白蜡木部件，新增了弱小怪物骨骼部件；两者均为3阶
+    - 新活动：攀爬
+    - 新技能：攀爬、呼吸、医术。呼吸会以较低速率被动获得经验（处于任何训练中时提高5倍）
+    - 两本新书，两本都会解锁「新」配方（其中许多配方本就存在，只是被锁在这里面），其中一本还会解锁医术技能
+    - 小幅增强了「弱效治疗粉」与「弱效治疗药水」，并为两者各新增了更强的版本
+    - 新增了若干其他新材料与消耗品
+    - 新增了杂项物品「成卷绳索」与「露营用品」，两者目前各只用于一项行动
+    - 新增了新的冥想地点，并为该技能新增了一个里程碑
+    - 采集材料的技能现在归属于独立的技能分类（不再是「活动技能」）
+    - 「高品质狼牙」与「高品质野猪獠牙」现在可分别用50个普通版本制作
+    - 地点导航现在采用与技能显示类似的结构，即分组显示，点击后展开
+    - 现在经验倍率可以作用于整个技能分类（例如所有「活动」技能）
+    - 物品品质等级现在直接显示在提示框中（此前只能靠颜色/品质去猜）
+    - 相关制作技能的提示框现在会显示品质上限
+    - 活动（工作、训练、资源采集）现在会显示其相关技能升级所需的时间
+        （采用游戏内时间格式，例如标准tickrate下24小时等于现实中的24分钟）
+    - 小幅扩展了部分技能里程碑
+    - 在底部栏右侧新增了Ko-fi图标，链接到我的主页
 
-    - equipment qualities are now rounded to nearest even value to reduce inventory cluttering (similarly to how components already had it rounded to nearest multiple of 4) 
-    - made attack speed penalties from shields harsher; they are now also present on light shields (but much weaker than on heavy shields)
-    - reduced value of crafting components to ~80%, but increased full equipment prices to ~125% (components are cheaper, but equipment prices stay mostly the same)
-    - crafting recipes now show their xp values in tooltips
-    - reduced the crafting quality cap to 100 + 2.8 * skill_lvl for equips and 100 + 2 * skill_lvl for components
-    - buffed success rates of first 2 woodcutting and mining spots
-    - buffed success rates of some recipes
-    - updated some xp displays to show both the percentage and the raw numbers
-    - bottom panel remains visible on loading screen, to allow importing savefile if something breaks and it gets stuck
-    - buffed starting health/stamina from 40 to 50
-    - slightly nerfed 'starving wolf rats' and 'wolf rats'
-    - slightly nerfed 'starving wolfs' and 'wolves'
-    - reduced hero level xp cost scaling from 1.8 to 1.7 (this is a buff)
-    - location with boars is now not unlocked directly through dialogue, it instead unlocks an action in the "forest road" to search for the area with them
-        If you already went through that dialogue, you will just keep the area unlocked and the action should never appear
-    - increased reward for dealing with boars to 4 S
+    - 装备品质现在会取整到最接近的偶数值，以减少背包中的杂乱（类似部件此前已按最接近的4的倍数取整）
+    - 加重了盾牌带来的攻击速度惩罚；轻型盾牌现在也带有该惩罚（但远弱于重型盾牌）
+    - 将制作部件的价值降低至约80%，但将完整装备的价格提高至约125%（部件更便宜了，装备价格大体不变）
+    - 制作配方现在会在提示框中显示其经验值
+    - 将制作品质上限降低为装备100 + 2.8 * skill_lvl、部件100 + 2 * skill_lvl
+    - 提高了前2个伐木与采矿地点的成功率
+    - 提高了部分配方的成功率
+    - 更新了部分经验显示，同时展示百分比与具体数值
+    - 底部面板在加载界面保持可见，以便在游戏出错卡住时导入存档
+    - 将初始生命/体力从40提高到50
+    - 小幅削弱了「饥饿狼鼠」与「狼鼠」
+    - 小幅削弱了「饥饿狼」与「狼」
+    - 将英雄等级的经验消耗系数从1.8降低到1.7（这是一次增强）
+    - 有野猪的地点不再直接通过对话解锁，而是在「森林道路」中解锁一项搜寻该区域野猪的行动
+        如果你已经走过了那段对话，该区域将继续保持解锁状态，该行动也不会出现
+    - 将处理野猪的奖励提高到4S
 
-    - slightly rewrote the code for location type penalties, allowing for flat effects (e.g. static hp loss every tick)
-    - rewrote combat location N-th clear rewards to a form that allows any reward to have such restriction instead of just location unlocks
-    - implemented partial reputation system, doesn't really do anything yet and is not currently displayed anywhere (will be expanded in future)
-    - slightly changed display settings of the bottom bar
+    - 小幅重写了地点类型惩罚的代码，使其支持固定效果（例如每次结算固定损失生命）
+    - 重写了战斗地点第N次通关的奖励结构，使任意奖励都能带有此类限制，而不只是地点解锁
+    - 实装了部分声望系统，目前尚无实际作用，也未在任何位置显示（后续会扩展）
+    - 小幅调整了底部栏的显示设置
 
-    - fixed a bug where some activities were stopped on reload with a warning in console, due to mismatch in keys
-    - fixed a bug in crafting, where some equipments would end up with a different component than was chosen
-    - fixed a bug with market saturation not working properly (item sold count wasn't being updated, leading to situation where item price reduction only applied in bulk trading)
-    - fixed a bug where additional stats on componentless equipment (clothing) didn't scale with rarity
-    - fixed a bug in crafting equipment, where component quality was ignored in tooltips
-    - fixed a bug where if skill changed name on levelup, the level increase message would use the new one 
-        (it was "skill Y leveled up, skill X was upgraded to Y", instead of "skill X leveled up, skill X was upgraded to Y")
-    - fixed a bug with display of unlocked skill milestones, where descriptions sometimes included ", ,"
-    - fixed a bug where clicking dropdown icons on skill categories wouldn't expand the content
-    - fixed issues with compatibility for saves from some older versions
+    - 修复了因键不匹配导致部分活动在重新加载时被中断、并在控制台输出警告的错误
+    - 修复了制作中的错误：部分装备最终得到的部件与所选的部件不一致
+    - 修复了市场饱和未正常生效的错误（物品售出数量未更新，导致物品降价只在批量交易时生效）
+    - 修复了无部件装备（衣物）的附加属性不随品质变化的错误
+    - 修复了制作装备时提示框忽略部件品质的错误
+    - 修复了技能升级时若发生改名、升级提示会使用新名称的错误
+        （此前显示为「技能Y升级了，技能X已升级为Y」，而应为「技能X升级了，技能X已升级为Y」）
+    - 修复了已解锁技能里程碑的显示错误，描述中有时会出现「, ,」
+    - 修复了点击技能分类的下拉图标无法展开内容的错误
+    - 修复了部分旧版本存档的兼容性问题
 v0.4.6.1
-    - fixed a broken unlock in mountains
-    - fixed a bug with clicked items being moved to storage when it wasn't open
-    - time to next level now takes skill xp bonuses into account
+    - 修复了山地区域一处失效的解锁
+    - 修复了点击物品时、在储物并未打开的情况下物品被移入储物的错误
+    - 距离下一级的时间现在会计算技能经验加成
 v0.4.6.2
-    - added missing tools to trader inventories
+    - 为商人库存补充了缺失的工具
 v0.4.6.3
-    - fixed a bug with wrong tool type on sickles, which made herb gathering impossible
+    - 修复了镰刀工具类型错误、导致无法采集草药的错误
 v0.4.6.4
-    - fixed typo in breathing skill's description
-    - fixed typo in atratan ore unlock
-    - fixed descriptions of some books
-    - fixed a bug that allowed reading books while in combat
-    - fixed wrong name order in message about skill name change, hopefuly this time for real
-    - reduced agility multipliers on short blades
+    - 修正了呼吸技能描述中的错别字
+    - 修正了atratan矿石解锁中的错别字
+    - 修正了部分书籍的描述
+    - 修复了战斗中仍可读书的错误
+    - 修复了技能改名提示中名称顺序错误的问题，希望这次是真的修好了
+    - 降低了短刃的敏捷倍率
 v0.4.6.5
-    - fixed typo in alchemy skill description
-    - fixed bug with reputation rewards breaking the game
+    - 修正了炼金技能描述中的错别字
+    - 修复了声望奖励导致游戏崩溃的错误
 v0.4.6.6
-    - increased 'strength of mind' max level from 10 to 40, slightly reduced xp cost scaling
-    - fixed missing steel chainmail component recipes
-    - fixed minor errors when clicking wrong spots on the crafting list for components/equipments
+    - 将「心力」的最高等级从10提高到40，并小幅降低了经验消耗系数
+    - 修复了钢制锁子甲部件配方缺失的问题
+    - 修复了在部件/装备制作列表中点击空白处时出现的小错误
 v0.4.6.7
-    - changed level scaling of tier 3 material recipes from 7/17 to 10/20
-    - moved steel unlock from forging 15 to forging 10
-    - raised crafting xp gains to ^1.2
-    - fixed town being unlocked (there was literally nothing there, just an empty town square)
-    - fixed eldritch effect restoring health instead of taking it
+    - 将3阶材料配方的等级需求从7/17调整为10/20
+    - 将钢的解锁条件从锻造15级改为锻造10级
+    - 将制作经验收益提升至^1.2
+    - 修复了城镇被提前解锁的问题（那里真的什么都没有，只有一片空荡的城镇广场）
+    - 修复了诡异效果本应扣除生命却反而回复生命的错误
 v0.4.6.8
-    - tweaked crafting xp exponent for components to be applied before the material count multiplier
-    - implemented multi-attacks for enemies; it makes multiple hits in same attack, all under singular dodge/block/crit calculation
-    - buffed Wall Rats by giving them x3 multi-attacks (but slightly reduced their damage)
-    - changed font on the help page and changelog to the one used in game
-    - increased mountain goat horn droprate to match boar tusks'
+    - 调整了部件制作经验指数的计算顺序，使其在材料数量倍率之前生效
+    - 实装了敌人的多重攻击；它在同一次攻击中造成多次命中，全部共用一次闪避/格挡/暴击计算
+    - 通过赋予x3多重攻击增强了墙鼠（但小幅降低了其伤害）
+    - 将帮助页面与更新日志的字体改为游戏内使用的字体
+    - 将山羊角的掉落率提高到与野猪獠牙相当
 v0.4.6.9
-    - added short explanation of quality/xp caps in crafting section of help page, updated some other sections as they were slightly outdated
-    - slightly changed crafting quality formulas (reduced difference per tier, slightly changed base value param)
+    - 在帮助页面的制作部分新增了品质/经验上限的简要说明，并更新了其他几个略显过时的部分
+    - 小幅调整了制作品质公式（降低了各阶之间的差值，并小幅改动了基础值参数）
 v0.4.6.10
-    - fixed wrong crafting quality caps in skill tooltips
+    - 修复了技能提示框中制作品质上限显示错误的问题
 v0.4.6.11
-    - moved 'strength of mind' bonuses in 'persistence' milestones to slightly higher levels
-    - fixed minor bug where it was impossible to unequip shield by clicking its slot in 'Equipment' tab
-    - attempted to optimize game by removing some probably-unneeded stat updates, will be reversed if they turn out to be in fact needed
+    - 将「坚韧」里程碑中「心力」的加成移到了稍高的等级
+    - 修复了在「装备」页点击盾牌槽位无法卸下盾牌的小错误
+    - 尝试通过移除一些可能无用的属性更新来优化游戏，若发现它们确有必要将会回滚
 v0.4.6.12
-    - replaced 'coal' with 'charcoal'; swapped coal-using recipes to use material type 'coal' instead of specific item
-    - fixed 'forging' skill tooltip to only show quality cap for components, as that skill has no full eq items
-    - reduced minimum dmg getting through armor from 10% to 5%
+    - 将「煤」替换为「木炭」；并将使用煤的配方改为使用材料类型「煤」而非特定物品
+    - 修正了「锻造」技能的提示框，使其只显示部件的品质上限，因为该技能没有完整装备
+    - 将穿透护甲的最低伤害从10%降低至5%。
 v0.4.6.13
-    - slightly changed hit/dodge formula to allow an actual 0% chance of being hit; due to this, changed modifiers from enemy group count and enemy size (via skill) to be applied to AP/EP instead (since multiplying 0 by them would be meaningless), which might change how much impact they have
-    - fixed a bug on equipping better tools if the related skill was not unlocked
+    - 略微调整了命中与闪避公式，使被命中率确实可以达到0%；因此，来自敌人数量与敌人尺寸（通过技能）的修正改为作用于AP与EP（因为把0乘上它们没有意义），这可能会改变它们的影响力。
+    - 修复了相关技能未解锁时仍能装备更好工具的问题。
 v0.4.6.14
-    - fixed 'hard reset' only working for non-dev save (doing that even if you were on dev, whoops)
-    - options panel can now be closed with 'Escape' key
-    - added options to log gathering gains per gathering period and to log total gathering gains when it's finished, both checked by default
-    - increased max message count for some categories
-    - added bug-related section to help page
+    - 修复了「硬重置」只对非开发者存档生效的问题（即使在开发者存档里也会照做，哎）。
+    - 选项面板现在可以通过「Escape」键关闭。
+    - 新增了按采集周期记录采集收益的选项，以及采集结束时记录总采集收益的选项，两者默认均勾选。
+    - 提高了部分类别的最大消息条数。
+    - 在帮助页面新增了与程序错误相关的章节。
 v0.4.6.15
-    - 'hard reset' might not have been fixed properly
-    - fixed minor bug where 'Meditation', and possibly some other skills, appeared in tooltips with their full name instead of '?????' despite not being unlocked
-    - fixed occasional bug where switching to .14 while in gathering action would cause an error due to .gathered_materials being undefined
+    - 「硬重置」可能并未被正确修复。
+    - 修复了一个小问题：未解锁时，「冥想」以及可能还有其他技能会以完整名称而非「?????」出现在提示框中。
+    - 修复了偶发问题：在采集活动中切换到.14时，由于.gathered_materials未定义而报错。
 v0.4.6.16
-    - fixed displayed enemy hit/dodge not reflecting actual chances
+    - 修复了敌人命中与闪避的显示未反映实际概率的问题。
 v0.4.6.17
-    - fixed wrong condition where BGM that was supposed to be used in "Slums" while the gang was not defeated, was instead used AFTER it was defeated
-    - 'Slums thug' now appears in bestiary
+    - 修复了条件判断错误：本应在帮派未被击败时于「贫民区」播放的背景音乐，反而在帮派被击败之后才播放。
+    - 「贫民区恶棍」现已出现在图鉴中。
 v0.4.6.18
-    - fixed issue with 'Gang hideout' not locking properly
-    - fixed version comparing function not working properly if there was a different number of positions (e.g. comparing 0.4.6 and 0.4.6.1)
-    - fixed a serious error on loading if trying to award some past missed location unlocks
+    - 修复了「帮派据点」未正确锁定的问题。
+    - 修复了版本比较函数在段数不同时无法正常工作的问题（例如比较0.4.6与0.4.6.1）。
+    - 修复了加载存档时若尝试补发过去遗漏的地点解锁会触发的严重错误。
 v0.4.6.19
-    - fixed a bug where visiting two traders would result in the latter displaying former's prices for some items (despite different profit margins); this wasn't affecting actual trade prices, just display
-    - fixed a bug where displayed prices of equipment were incorrect
+    - 修复了一个问题：连续访问两个商人时，后者对部分物品会显示前者的价格（尽管利润率不同）；这不影响实际交易价格，只是显示问题。
+    - 修复了装备显示价格不正确的问题。
 v0.4.6.20
-    - fixed a bug where effects of medicines weren't updating properly with skill level
+    - 修复了药品效果未随技能等级正确更新的问题。
 v0.4.6.21
-    - fixed a bug where prices of armor were being displayed as "nothing"
-    - slightly changed code for displaying dialogue answers, made it possible to set an initial description
+    - 修复了护甲价格被显示为「nothing」的问题。
+    - 略微改动了对话回答的显示代码，现在可以设置初始描述。
 v0.4.6.22
-    - fixed a bug with in-game date increasing incorrectly
+    - 修复了游戏内日期错误增加的问题。
 v0.4.6.23
-    - another fix for in-game date
-    - fixed a display issue of active effects tooltip extending out of view if there were too many effects, now it wraps into additional columns
+    - 又一次修复游戏内日期。
+    - 修复了生效效果过多时提示框超出可视范围的显示问题，现在会换行到额外的列。
 v0.4.6.24
-    - expanded fast travel system to allow favouriting any location (by clicking a star icon next to its name)
+    - 扩展了快速旅行系统，现在可以将任意地点加入收藏（点击名称旁的星形图标）。
 v0.4.6.25
-    - fixed a bug with location locking (i.e. beating challenges / the gang hideout)
+    - 修复了地点锁定方面的问题（即完成挑战与帮派据点后的解锁）。
 v0.4.6.26
-    - fixed a bug on unfavouriting a location you're in
-    - content of location choices is now automatically scrolled into view if it would go out of display
+    - 修复了取消收藏当前所在地点时的错误。
+    - 地点选项的内容在超出显示范围时现在会自动滚动到可视区域。
 v0.4.6.27
-    - fixed that thing with all active effects getting activated at once
+    - 修复了所有生效效果会同时被激活的问题。
 v0.4.6.28
-    - added an auto-use option for consumables; it only triggers in combat and is "forgotten" once item runs out
-    - replaced "atk pwr" with "atk" in hero combat tab to free some space, changed rounding a bit (values greater/equal to 100 are now rounded to integer)
-    - fixed a bug where meditation was still occasionally displayed as '?????' in some tooltips despite being unlocked
+    - 新增了消耗品的自动使用选项；它只在战斗中触发，且物品用完后会被「遗忘」。
+    - 在英雄战斗页将「atk pwr」替换为「atk」以腾出空间，略微调整了取整（大于或等于100的数值现在取整为整数）。
+    - 修复了冥想已解锁后仍偶尔在某些提示框中显示为「?????」的问题。
 v0.4.6.29
-    - fixed a bug where some displayed components in equipment tab of crafting stayed visible after switching to another recipe
+    - 修复了制作界面装备页中的部分显示部件在切换到其他配方后仍然可见的问题。
 v0.4.6.30
-    - fixed a bug with auto-use with a serious error if item ran out in combat
+    - 修复了自动使用在战斗中物品用完时导致严重错误的问题。
 v0.4.6.31
-    - fixed absurdly high sleeping xp gain in mountain camp
+    - 修复了山地营地中睡觉获得的经验高得离谱的问题。
 v0.4.6.32
-    - rewrote character attack loop to use setTimeout instead of setInterval, in consistency with how enemy attack loops work; this should mitigate a cooldown discrepancy on Firefox, which seems to result from differences in implementations
-    - fixed a serious game loading bug if you had 'Sleeping' on level 5 (higher/lower levels were fine, it was just an issue with game trying to update display of related skills when act of unlocking another skill was not enough to register the unlocker as related)
-    - skill level progress % is now rounded down in display 
+    - 将角色攻击循环改用setTimeout而非setInterval，与敌人攻击循环的实现保持一致；这应能缓解Firefox上的冷却偏差，该偏差似乎源于实现差异。
+    - 修复了「睡觉」处于5级时会导致游戏加载失败的严重问题（更高或更低的等级均正常，问题在于当解锁另一个技能不足以将解锁者记为相关技能时，游戏仍会尝试更新相关技能的显示）。
+    - 技能等级进度的百分比显示现在向下取整。
 v0.4.6.33
-    - fixed another bug with combat loop
+    - 又修复了战斗循环的一个错误。
 v0.4.6.34
-    - fixed minor bug where stamina efficiency was displaying wrong value
+    - 修复了体力效率显示数值错误的小问题。
 v0.4.6.35
-    - fixed a bug where negative health regen behaved incorrectly in combat if it was the cause of health reaching 0 (instead of enemy attacks causing it)
+    - 修复了生命回复为负时，若它导致生命降至0（而非敌人攻击所致），战斗中表现异常的问题。
 v0.4.6.36
-    - code is now bundled
+    - 代码现已打包。
 v0.4.6.37
-    - fixed a bug with additional attack power of heavier weapon handles not being included in calculations (therefore doing nothing)
+    - 修复了较重武器柄提供的额外攻击力未被计入计算（因而毫无作用）的问题。
 v0.4.6.38
-    - fixed a bug where newly unlocked beds were not automatically added to fast travel and required save+reload to appear there
-    - fixed a bug where for older saves 'Shack' was initially not in the fast travel list and required save+reload to appear there
-    - fixed skill names not updating properly in some situations
-    - breathing xp is now also gained in all combat locations, at the same rate as outside of training ('thin air'-type locations still gain xp to it from location type on top of that)
-    - reduced rat tails required to produce rat meat from 8 to 3
-    - 'medicine for dummies' now provides x1.2 Medicine skill xp gain instead of a small flat bonus
+    - 修复了新解锁的床不会自动加入快速旅行、需要保存并重载后才出现的问题。
+    - 修复了旧存档中「棚屋」初始不在快速旅行列表、需要保存并重载后才出现的问题。
+    - 修复了技能名称在某些情况下未能正确更新的问题。
+    - 呼吸经验现在在所有战斗地点也会获得，速率与训练之外相同（「稀薄空气」类地点仍会在此基础上按地点类型额外获得该经验）。
+    - 将制作鼠肉所需的鼠尾从8条降低至3条。
+    - 「医学入门」现在提供x1.2的医学技能经验获取，而非少量固定加成。
 v0.4.6.39
-    - fixed a minor display bug where switching from a favourited to a not-favourited stance would result in the hoverable fav stance list still displaying the previous selection as active
-    - fixed a bug where gathering skill being lower than the required minimum caused gathering efficiency to be maxxed out
-    - fixed a display bug where changing a tool (and possibly some other triggers) caused the tooltip of current activity to
-    - weapons that used to provide agility, now provide EP; armors weren't changed in this aspect
-    - swords now provide small AP bonus
-    - unarmed skill gained an EP bonus
+    - 修复了一个小的显示问题：从已收藏的架势切换到未收藏的架势后，可悬停的收藏架势列表仍将之前的选择显示为生效。
+    - 修复了采集技能低于所需下限时采集效率被拉满的问题。
+    - 修复了一个显示问题：更换工具（可能还有其他触发条件）会导致当前活动的提示框
+    - 原本提供敏捷的武器现在提供EP；护甲在这方面没有改动。
+    - 剑现在提供少量AP加成。
+    - 徒手技能获得了EP加成。
 </pre>
 </div>
-<button type="button" class="collapsible">v0.4.3/v0.4.4 - GUI remake and Crafting</button>
+<button type="button" class="collapsible">v0.4.3/v0.4.4 - 界面重制与制作系统</button>
 <div class="content"><pre>
 v0.4.3
-    - remade GUI to be a single tab
-    - implemented a crafting system
-    - added 3rd type of passive activity, resource gathering; if you are not starting a new game, for both this and crafting talk with the village elder
-    - changed some action icons
-    - expanded the breakdowns of hero stats
-    - new equipment slot, currently with 1 craftable thingy that can go there
-    - minimum damage getting through armor is now 10% of original value, instead of 1
-    - weapon skills (and unarmed) now increase hit chance
-    - 2 new combat locations: the rat saga continues + 3rd combat location in forest (beat 2nd, then talk with certain someone)
-    - changed scaling of location type penalties with skill level (it now has constant rate of change with levels, meaning first few levels won't reduce it as drastically as they used to)
-    - skill descriptions now have their id displayed
-    - skill names in books and in skill rewards now match what's displayed in other places (e.g. a multiplier to a not yet unlocked skill will have its name shown as "????")
-    - slightly reduced frequency of background 'noises'
-    - slightly nerfed: attack power of tier 2 equipment, stances (heavy/quick), xp values of some enemies, attack speed from unarmed skill, some skill milestone rewards
-    - fixed an issue where tooltips tended to lag a lot on chrome while devtools were open
-    - fixed the bug with messages about reaching level 0 in skill (maybe this time it will finally work, eh?)
-    - fixed a bug where enemy size kept being defaulted to "small"
-    - increased xp requirements for 'iron skin' and further reduced its xp gain if wearing any armor
-    - fixed a bug with tooltip refresh for multi-target stances
-    - tooltips of location types now show the penalties (both current and base values)
-    - restructured some of the code for updating character stats, for easier future use
-    - added a simple loading screen
-    - rewrote some ugly code to a more manageable form
+    - 将界面重做为单一标签页。
+    - 实装了制作系统。
+    - 新增了第三类被动活动——资源采集；如果你不是新开游戏，这项和制作都需要与村长对话。
+    - 更换了部分行动图标。
+    - 扩展了英雄属性的明细显示。
+    - 新增装备栏位，目前有1件可制作物品可以放入其中。
+    - 穿透护甲的最低伤害现在为原值的10%，而非1。
+    - 武器技能（以及徒手）现在会提高命中率。
+    - 新增2个战斗地点：老鼠传奇仍在继续，以及森林中的第3个战斗地点（击败第2个后与某个人对话）。
+    - 调整了地点类型惩罚随技能等级的变化（现在随等级保持恒定的变化率，意味着最初几级不会像以前那样大幅削减惩罚）。
+    - 技能描述现在会显示其id。
+    - 书籍与技能奖励中的技能名称现在与其他地方显示的一致（例如对尚未解锁技能的倍率加成会将其名称显示为「????」）。
+    - 略微降低了背景「噪音」的出现频率。
+    - 略微削弱：2阶装备的攻击力、架势（重、快）、部分敌人的经验值、徒手技能的攻击速度、部分技能里程碑奖励。
+    - 修复了在Chrome中打开开发者工具时提示框会严重卡顿的问题。
+    - 修复了技能达到0级时的消息问题（也许这次终于能修好，嗯？）。
+    - 修复了敌人尺寸一直被默认为「small」的问题。
+    - 提高了「铁皮」的经验需求，并进一步降低了穿戴任意护甲时的经验获取。
+    - 修复了多目标架势的提示框刷新问题。
+    - 地点类型的提示框现在会显示惩罚（当前值与基础值）。
+    - 重构了部分更新角色属性的代码，便于日后使用。
+    - 新增了简单的加载画面。
+    - 将部分糟糕的代码改写为更易维护的形式。
 v0.4.3a
-    - fixed bug that broke combat when using shield
+    - 修复了使用盾牌时导致战斗中断的问题。
 v0.4.3b
-    - fixed crafting tooltips
-    - fixed some unlocks that didn't work
-    - fixed bug with consumables resulting in max health/stamina becoming NaN
-    - fixed bug on trying to trade some of new equipment
+    - 修复了制作相关的提示框。
+    - 修复了部分未生效的解锁。
+    - 修复了使用消耗品导致生命上限与体力上限变为NaN的问题。
+    - 修复了尝试交易部分新装备时的错误。
 v0.4.3c
-    - fixed bug with one of unlocks
-    - fixed wrong recipe name in crafting
-    - fixed bug on trying to trade some of new equipment (again)
-    - fixed quality rounding
+    - 修复了其中一个解锁的错误。
+    - 修复了制作中配方名称错误的问题。
+    - 再次修复了尝试交易部分新装备时的错误。
+    - 修复了品质取整问题。
 v0.4.3d
-    - fixed bug with crafting quality defaulting to 100%
-    - fixed bug where some of unlocked activities could become locked again after reloading
+    - 修复了制作品质默认变成100%的问题。
+    - 修复了部分已解锁活动在重载后可能重新被锁定的问题。
 v0.4.3d2
-    - fixed wrong chances on resource gathering (instead of being X, they were 1 minus X)
+    - 修复了资源采集概率错误的问题（原本是1减去X，而非X）。
 v0.4.3e
-    - fixed wrong success chance on item crafting
-    - fixed unavailable unlock
-    - fixed bug where new clothing was unequippable without a reload
-    - fixed bug where unarmed dmg bonus was applied twice
-    - tweaked the autoscrolling of recipes to no longer happen when it's unnecessary
+    - 修复了物品制作成功率错误的问题。
+    - 修复了无法生效的解锁。
+    - 修复了新衣物需要重载后才能装备的问题。
+    - 修复了徒手伤害加成被应用两次的问题。
+    - 调整了配方的自动滚动，现在在不必要时不再滚动。
 v0.4.3f
-    - fixed trade bug
+    - 修复了交易错误。
 v0.4.3f2
-    - fixed a broken unlock when talking to "Farm supervisor"
+    - 修复了与「农场主管」对话时出现的解锁失效。
 v0.4.3g
-    - fixed bug where light level multiplier and unarmed attack speed were not being properly removed
-    - fixed scaling of some gathering actions (now they start from 0 instead of 1)
-    - wool now gets properly crafted into wool cloth instead of wolf leather
-    - fixed issue with time adjustment for attack loops
+    - 修复了光照等级倍率与徒手攻击速度未被正确移除的问题。
+    - 修复了部分采集活动的成长曲线（现在从0开始而非1）。
+    - 羊毛现在会被正确制作成毛线布，而不再是狼皮革。
+    - 修复了攻击循环的时间调整问题。
 v0.4.3h
-    - added drops to elite wolf rat guardians, incl. new item that currently has no crafting usage but might get it somewhere later
-    - fixed bug where loot from resource gathering was displayed in event category instead of loot category
-    - fixed bug where it was impossible to trade iron chainmail torso armor
+    - 为精英狼鼠守卫新增了掉落，其中包括一件目前没有制作用途、但以后可能会有的新物品。
+    - 修复了资源采集的战利品被显示在事件类别而非战利品类别的错误。
+    - 修复了无法交易铁锁子甲躯干护甲的问题。
 v0.4.3h2
-    - fixed trade bug when dealing with 3+ pieces of same unstackable item
+    - 修复了交易3件及以上同种不可堆叠物品时的错误。
 v0.4.3h3
-    - fixed the terrible issues caused by the previous "fix"
-    - crafting 'Iron Chainmail' now gives xp to the proper skill
+    - 修复了上一个「修复」引发的严重问题
+    - 制作「铁链甲」现在会把经验加到正确的技能上
 v0.4.3i
-    - fixed bug with tool equipping
-    - fixed bug with combat timers
+    - 修复了装备工具相关的问题
+    - 修复了战斗计时器的问题
 v0.4.3i2
-    - fixed another trade bug (this better be the last of them...)
+    - 修复了又一个交易问题（这次最好真的是最后一个……）
 v0.4.3j
-    - updated descriptions of environmental skills to reflect formula change
-    - fixed some more bugs with crafting
+    - 更新了环境类技能的描述，以反映公式改动
+    - 又修复了一些制作相关的问题
 v0.4.3j2
-    - fixed another trade bug
+    - 又修复了一个交易问题
 v0.4.3k
-    - fixed formulas for scaling of gathering/crafting chances
-    - defense now works the same way for enemies as it does for the hero (not blocking more than 90%)
+    - 修复了采集与制作成功率的成长公式
+    - 防御现在对敌人和对英雄的生效方式一致（格挡不会超过90%）
 v0.4.3k2
-    - fixed a broken unlock for clearing 3rd forest location and increased area type xp gain from it
+    - 修复了通关第3个森林地点后解锁异常的问题，并提高了由此获得的区域类型经验
 v0.4.3l
-    - fixed an issue where state of BGM filter for message log wasn't being saved
-    - fixed a bug with message log where wrong message type was being removed
-    - fixed bug where drop chances were appearing in wrong places in bestiary tooltips
+    - 修复了消息记录中BGM筛选状态不会被保存的问题
+    - 修复了消息记录会移除错误消息类型的问题
+    - 修复了图鉴提示框中掉落概率显示位置错误的问题
 v0.4.3m
-    - displayed skills are now grouped in categories
-    - hero levels now increase skill xp gain
-    - some minor rebalances and fixes
-    - fixed healing bug
-    - fixed bug with environmental penalties where only one effect would apply to a given stat
+    - 显示的技能现在按类别分组
+    - 英雄等级现在会提高技能经验获取
+    - 一些小幅平衡调整与修复
+    - 修复了治疗相关的问题
+    - 修复了环境惩罚中同一属性只会生效一个效果的问题
 v0.4.3n
-    - component value now scales with quality
-    - fixed another healing bug
-    - fixed bug with leather hats
-    - fixed a bug where weapon type related bonuses weren't applied on skill levelup
+    - 部件价值现在随品质变化
+    - 又修复了一个治疗相关的问题
+    - 修复了皮帽相关的问题
+    - 修复了技能升级时武器类型相关加成不生效的问题
 
 v0.4.4
-    - all items now stack (for those with quality, it's only when quality is the same)
-    - completely rewrote how active effects work and updated their display
-    - xp value of crafted components now scales with their material cost (you don't have to solely craft dagger blades anymore)
-    - increased material cost of some crafting recipes
-    - increased minimum crafting xp value
-    - slowed down resource gathering activities
-    - crafting xp is now reduced when skill is above requirements: -20% per level for item recipes, while for components/equipment soft cap is 8*tier and hard cap 8*tier*sqrt(quality_multiplier)
-    - mentions of skills should now update properly, no more "?????" in descriptions
-    - item quality is now used as an additional sorting param if names/prices are the same
-    - for equipment crafting, available components are now sorted (by tier -> name -> quality)
-    - fixed visual bug where stance list would slightly change in width on hover, resulting in awkward flickering
-    - separated saves between main and dev releases
-    - fixed some bugs with item values
-    - tweaked item price rounding
-    - updated some display elements to a form that hopefully will be much easier to manage
-    - rewrote item quality from fractions to integers (no more floating point errors, yay)
+    - 所有物品现在都可以堆叠（有品质的物品仅在品质相同时堆叠）
+    - 完全重写了生效效果的运作方式，并更新了其显示
+    - 制作出的部件经验值现在随其材料成本变化（不必再只靠制作匕首刃了）
+    - 提高了部分制作配方的材料消耗
+    - 提高了制作经验的最低值
+    - 降低了资源采集活动的速度
+    - 技能高于需求时的制作经验现在会被削减：物品配方每高1级-20%，部件与装备的软上限为8*tier、硬上限为8*tier*sqrt(quality_multiplier)
+    - 技能提及现在能正确更新，描述中不会再出现「?????」
+    - 名称或价格相同时，物品品质现在会作为额外的排序参数
+    - 装备制作中，可用部件现在会排序（按阶层 -> 名称 -> 品质）
+    - 修复了悬停时架势列表宽度轻微变化、导致闪烁的显示问题
+    - 分离了正式版与开发版的存档
+    - 修复了一些物品价值相关的问题
+    - 微调了物品价格的取整
+    - 将部分显示元素改为更易于管理的形式
+    - 物品品质从分数改为整数（终于不再有浮点误差了）
 v0.4.4a
-    - fixed bug when selling more than 1 of an item
-    - fixed bug with item recipe tooltips not updating when needed
+    - 修复了一次卖出多个物品时的问题
+    - 修复了物品配方提示框在需要时不更新的问题
 v0.4.4b
-    - fixed bug when buying more than 1 of an item
+    - 修复了一次购买多个物品时的问题
 v0.4.4c
-    - fixed bug with crafting xp cap
-    - fixed bug where material count for clothing recipes was always at 0
-    - fixed bug that made it impossible to read books
+    - 修复了制作经验上限的问题
+    - 修复了服装配方的材料数量始终为0的问题
+    - 修复了无法读书的问题
 v0.4.4d
-    - crafting when skill is past hardcap now provides 1 xp instead of 0
-    - fixed component sorting in crafting
+    - 技能超过硬上限时制作现在给1点经验，而不是0
+    - 修复了制作中的部件排序
 v0.4.4e
-    - quick fix to importing saves
+    - 快速修复了导入存档
 v0.4.4f
-    - implemented additional separate autosave every 60 minutes, which can be loaded from options panel
-    - added a button to import a save from the other release (main if you are on dev, dev if you are on main) in options panel
-    - fixed lack of recipe display refresh on failed crafting (for 'items' category)
-    - fixed wrong month numbering in exported files
-    - fixed broken names of %-based effects
+    - 新增了每60分钟一次的独立自动存档，可在选项面板加载
+    - 在选项面板新增了从另一版本导入存档的按钮（开发版可导入正式版，正式版可导入开发版）
+    - 修复了制作失败时配方显示未刷新的问题（针对「物品」类别）
+    - 修复了导出文件中月份编号错误的问题
+    - 修复了百分比类效果名称错误的问题
 v0.4.4g
-    - fixed xp gains for some resource gathering activities
-    - fixed bug with prices of component-less equipment
+    - 修复了部分资源采集活动的经验获取
+    - 修复了无部件装备的价格问题
 v0.4.4h
-    - fixed displayed money not updating after obtaining cash via dialogue
-    - fix for a bug with saves not loading on dev in some circumstances
+    - 修复了通过对话获得金钱后显示金额不更新的问题
+    - 修复了某些情况下开发版无法加载存档的问题
 v0.4.4i
-    - fixed bug with additional stats of components
+    - 修复了部件附加属性的问题
 </pre>
 </div>
-<button type="button" class="collapsible">v0.4 - Combat Stances</button>
+<button type="button" class="collapsible">v0.4 - 战斗架势</button>
 <div class="content"><pre>
 v0.4.0
-    - introduced combat stances, talk with village guard to unlock (ask him for tips if you already met him earlier); lots of names were suggested by Varian on our discord channel
-    - some combat related skills now gain xp even if their original condition (e.g. succeeding in some action) is not fulfilled, although at half the efficiency
-    - the rat saga continues
-    - a bit more content after leaving the village
-    - added some background "sounds"
-    - new skills and activities (check training options in village and cave, they might be instantly unlocked if you are far enough)
-    - rebalance; changes to some displayed texts
-    - modified changelog and help page to a form easier to navigate
-    - regeneration when sleeping now scales with "Sleeping" skill
-    - trade all button + another trade bugfix (plz let it be the last one)
+    - 新增了战斗架势，与村庄守卫对话即可解锁（若此前已见过他，可以向他询问提示）；许多名称由Varian在我们的Discord频道中提出
+    - 部分战斗相关技能现在即使未满足原条件（例如成功完成某个动作）也能获得经验，但效率减半
+    - 老鼠的传奇仍在继续
+    - 离开村庄后新增了一些内容
+    - 新增了一些背景「声音」
+    - 新增了技能与活动（可查看村庄和洞穴中的训练选项，进度足够时可能已自动解锁）
+    - 平衡性调整；修改了部分显示文本
+    - 将更新日志与帮助页面改为更易浏览的形式
+    - 睡眠时的回复现在随「睡眠」技能变化
+    - 一键全部交易按钮，以及又一个交易问题修复（但愿这是最后一个）
 v0.4.0a
-    - balance changes
-    - switching weapons now won't make dead enemies suddenly start attacking again
-    - CSS fixes
-    - dialogue text fixes
-    - level bonuses from "Presence sensing" skill, expanded bonuses for some other skills
+    - 平衡性调整
+    - 切换武器不会再让已死亡的敌人突然重新开始攻击
+    - CSS修复
+    - 对话文本修复
+    - 「气息感知」技能的等级加成，扩展了其他部分技能的加成
 v0.4.0b
-    - more balance changes
-    - changed some background 'sounds'
-    - bugfixes
+    - 更多平衡性调整
+    - 修改了部分背景「声音」
+    - 问题修复
 v0.4.0c
-    - fixed bug with doubled stamina usage when some attacks would one-shot an enemy wave
-    - reduced frequency of background 'sounds'
-    - raised max level of presence sensing but reduced initial xp cost
-    - fixed rounding of displayed health
-    - fixed doubling of some skill bars
-    - fixed a bug where if reading a book inventory would get sorted every irl second
-    - 'broad arc' stamina cost raised to 4
+    - 修复了部分攻击一次清掉整波敌人时体力消耗翻倍的问题
+    - 降低了背景「声音」的频率
+    - 提高了「气息感知」的最高等级，但降低了初始经验消耗
+    - 修复了生命显示值的取整
+    - 修复了部分技能条重复显示的问题
+    - 修复了读书时背包每个现实秒都会重新排序的问题
+    - 「宽弧」的体力消耗提高到4
 v0.4.0d
-    - hitcount of multi-target stances now properly updates in their descriptions when needed
-    - 'suspicious wall', 'village guard' and 'suspicious man' are no longer 'small' targets
-    - 'broad arc' dmg multiplier reduced to 0.4
-    - 'cave depths' location is now a tiny bit harder
-    - location types now how their stage displayed (e.g 'dark III')
-    - fixed 'quick steps' skill's too low xp cost
+    - 多目标架势的命中次数现在会在需要时正确更新到描述中
+    - 「可疑的墙」「村庄守卫」和「可疑男子」不再是「小型」目标
+    - 「宽弧」的伤害倍率降低到0.4
+    - 「洞穴深处」地点现在稍微更难了
+    - 地点类型现在会显示其阶段（例如「dark III」）
+    - 修复了「快步」技能经验消耗过低的问题
 v0.4.0e
-    - stabilized enemy attack timers (based on expected time vs actual time) to hopefully fix the issue with enemy attacks firing slower than expected
+    - 稳定了敌人的攻击计时（依据预期时间与实际时间对比），希望能修复敌人攻击比预期更慢的问题
 v0.4.0f
-    - fixed issue with xp multiplier rewards from skill levels not working properly after reloading the game
+    - 修复了重新载入游戏后技能等级提供的经验倍率奖励失效的问题
 v0.4.0g
-    - fixed stance skills having no effect
-    - stamina efficiency in 'Data' is now shown with 2 decimal places
-    - minor CSS fix
+    - 修复了架势技能没有效果的问题
+    - 「数据」中的体力效率现在显示2位小数
+    - 小幅CSS修复
 v0.4.0h
-    - fixed wrong stance names in some skill descriptions
-    - crit rate / crit power breakdown is now shown with 2 decimal places
+    - 修复了部分技能描述中架势名称错误的问题
+    - 暴击率与暴击强度明细现在显示2位小数
 v0.4.0i
-    - fixed a bug where when entering activity with a maxxed out skill, xp% would be NaN
-    - CSS fixes for inventory
+    - 修复了技能已满级时进入活动经验百分比显示为NaN的问题
+    - 背包的CSS修复
 v0.4.0j
-    - fixed multi-trade buttons that were broken by previous patch
+    - 修复了被上一次补丁弄坏的多物品交易按钮
 v0.4.0k
-    - simplified some code
+    - 简化了部分代码
 v0.4.0l
-    - CSS fixes for inventory
+    - 背包的CSS修复
 v0.4.0m
-    - fixed skill-specific xp bonuses not working
-    - added a few more skill level rewards
-    - slightly reduced xp multipliers and crit rate from skill levels
+    - 修复了特定技能经验加成不生效的问题
+    - 新增了一些技能等级奖励
+    - 略微降低了技能等级提供的经验倍率与暴击率
 v0.4.0n
-    - another CSS fix for inventory
-    - another bugfix for trade (displayed value vs actual value sometimes differed)
+    - 又一次背包CSS修复
+    - 又一个交易问题修复（显示价值与实际价值偶尔不一致）
 v0.4.0o
-    - equalized base xp costs for stance skills at 60, modified how they gain xp
-    - added parent skill for stance skills
-    - added some more names to existing skills
+    - 将架势技能的基础经验消耗统一为60，并修改了其经验获取方式
+    - 为架势技能新增了父技能
+    - 为已有技能新增了一些名称
 </pre>
 </div>
 
-<button type="button" class="collapsible">v0.3.5 - Economy Rework</button>
+<button type="button" class="collapsible">v0.3.5 - 经济系统重做</button>
 <div class="content"><pre>
 v0.3.5
-    - reworked economy (drop rates no longer go down, instead price of enemy loot goes down as more and more is sold, they also slowly recover over time; solution suggested by 10mart10 on our discord channel)
-    - added quick travel to [last combat location] and to [last location where player slept]
-    - xp multipliers are now displayed - for skills in their onhover tooltip, for hero in data tab
-    - shield blocking skill now increases max dmg than can be blocked; block chance reduced by 5% points (goes from 75% to 95%)
-      it also has 30 levels instead of 20 now
-    - combat areas now have their descriptions available as tooltips when hovering over their name
-    - added more entries to the "help" section
-    - nerfed xp rewards for clearing both cave areas, added xp rewards for both forest areas
-    - buffed wolves (probably not enough, you guys are too strong)
-    - some other balance changes for skills, hero and items
-    - enemies in combat now display their chance to hit hero and to dodge hero's attack, instead of AP/EP
-    - some style fixes, styling for money
-    - fixed parent skill xp gain (now they will keep up in xp with their most leveled child)
-    - added skill sorting (by name and by level); fixed inventory sorting; you can now also click button again to reverse sort direction (switch between ascending and descending)
+    - 重做了经济系统（掉落率不再下降，改为敌人战利品的售价会随着出售数量增加而降低，并会随时间缓慢回升；解决方案由10mart10在我们的Discord频道提出）
+    - 新增了前往[上次战斗地点]和[上次睡觉地点]的快速旅行
+    - 经验倍率现在会显示——技能的倍率显示在悬停提示框中，主角的显示在数据页
+    - 盾牌格挡技能现在会提高可格挡的最大伤害；格挡率降低了5个百分点（从75%变为95%）
+      它现在的等级数也变成了30个，而不是20个
+    - 战斗区域的描述现在可以在悬停其名称时以提示框形式查看
+    - 「帮助」部分新增了更多条目
+    - 削弱了两个洞穴区域的清场经验奖励，为两个森林区域新增了经验奖励
+    - 加强了狼（大概还不够，你们太强了）
+    - 技能、主角和物品方面还有一些其他平衡调整
+    - 战斗中的敌人现在显示其命中主角和闪避主角攻击的几率，而不再显示AP/EP
+    - 修正了一些样式问题，并给金钱加了样式
+    - 修复了父技能的经验获取（现在它们会与等级最高的子技能保持经验同步）
+    - 新增了技能排序（按名称和按等级）；修复了背包排序；现在再次点击按钮还可以反转排序方向（在升序和降序之间切换）
 v0.3.5a
-    - minor CSS fix
+    - 小幅CSS修复
 v0.3.5b
-    - equipment display fix
-    - trade bug fix
+    - 修复了装备显示
+    - 修复了交易错误
 v0.3.5c
-    - fixed skill rewards being added twice
+    - 修复了技能奖励被重复添加的问题
 v0.3.5d
-    - some values wouldn't refresh properly
-    - added consolelogging of some warnings in case of unexpected results
-    - fixed some rounding issues
-    - some balance changes
-    - another trade fix
+    - 一些数值未能正确刷新
+    - 新增了在出现意外结果时把一些警告输出到控制台
+    - 修复了一些取整问题
+    - 一些平衡调整
+    - 又修复了一处交易问题
 v0.3.5e
-    - xp bonus from parent skill is now included in xp gains in skill tooltip
-    - minor balance change
-    - fixed some styling
+    - 技能提示框中的经验获取现在包含来自父技能的经验加成
+    - 小幅平衡调整
+    - 修复了一些样式问题
 v0.3.5f
-    - (hopefully) fixed issue with attack speed
+    - （希望）修复了攻击速度的问题
 v0.3.5g
-    - fixed unarmed attack speed bonus not being added
+    - 修复了徒手攻击速度加成未被添加的问题
 v0.3.5h
-    - fixed minor bug with loading older saves
+    - 修复了加载旧存档时的一个小错误
 v0.3.5i
-    - fixed attacks getting faster on 0 stamina
+    - 修复了体力为0时攻击变快的问题
 </pre>
 </div>
 <button type="button" class="collapsible">v0.3.4</button>
 <div class="content"><pre>
 v0.3.4
-    - implemented books (only 2 available for now); both provide small bonuses to xp gains upon finish
+    - 实现了书籍（目前只有2本可用）；两本读完后都会提供少量经验加成
 v0.3.4e
-    - huge buff to shield block chance, other balance changes
-    - bugfixes (trade, loading, wrong values in bestiary)
-    - added console message on auto save
-    - added visual distinction to the book that is being read
-    - travel options in locations now don't get grouped if there's nothing other than travel available (e.g. the cave)
-    - modified function for inventory display so it can now not only refresh all items but also a single one
-    - compatibility for saves from older versions
-    - fixed that ugly display of "def" in combat
+    - 大幅加强了盾牌格挡率，以及其他平衡调整
+    - 修复了一些问题（交易、加载、图鉴中的错误数值）
+    - 自动保存时会在控制台输出消息
+    - 正在阅读的书籍现在有视觉上的区分
+    - 地点的旅行选项在除旅行外没有其他选项时（例如洞穴）不再被归组
+    - 修改了背包显示的函数，使其现在不仅能刷新全部物品，也能刷新单个物品
+    - 兼容旧版本的存档
+    - 修复了战斗中「def」的难看显示
 v0.3.4f
-    - fixed reward of "tight manouvers" skill
-    - fixed display of "stamina efficiency" reward
-    - fixed issue with area unlocks (didnt work if it was supposed to be unlocked by clearing some combat zone)
-    - minor balance changes
+    - 修复了「紧凑机动」技能的奖励
+    - 修复了「体力效率」奖励的显示
+    - 修复了区域解锁的问题（当本应通过清场某个战斗区域来解锁时无法生效）
+    - 小幅平衡调整
 v0.3.4g
-    - fixed wrong rounding of dropchances in bestiary
-    - fixed lack of rounding in reading time
-    - fixed xp gains from harder areas
-    - removed underscores from some descriptions
-    - slightly nerfed some xp bonuses
+    - 修复了图鉴中掉落概率取整错误
+    - 修复了阅读时间未取整的问题
+    - 修复了更难区域的经验获取
+    - 移除了部分描述中的下划线
+    - 略微削弱了一些经验加成
 v0.3.4h
-    - fixed shield block chance reaching 100% way too soon
-    - fixed block chance display in combat
-    - added game version to save file, for future usage
+    - 修复了盾牌格挡率过早达到100%的问题
+    - 修复了战斗中的格挡率显示
+    - 在存档文件中加入了游戏版本号，以备后续使用
 v0.3.4i
-    - now can take less than 1 dmg from an attack, if using a shield
-    - rounded some dmg numbers
+    - 现在如果使用盾牌，一次攻击可以只造成不足1点伤害
+    - 对一些伤害数值进行了取整
 v0.3.4i-2
-    - minor fix to CSS
+    - 对CSS做了小幅修正
 </pre></div>
 
 <button type="button" class="collapsible">v0.3.3</button>
 <div class="content"><pre>
 v0.3.3
-    - rebalanced stat gains from skill milestones
-    - added another combat location between infested field and cave depths, to smooth the progression
-    - skill groups replaced with parent skills; now they only provide xp bonus and their child skills have their own milestones
-    - refactored calculations of stats from skills/milestones/equipment/level to a more manageable form
-    - refactored equipment stat calculations
-    - implemented xp bonuses (for now only from skill milestones)
+    - 重新平衡了技能里程碑提供的属性提升
+    - 在虫害田野和洞穴深处之间新增了一个战斗地点，使进度更平滑
+    - 用父技能取代了技能组；现在它们只提供经验加成，其子技能拥有各自的里程碑
+    - 重构了由技能/里程碑/装备/等级计算属性的方式，使其更易维护
+    - 重构了装备属性计算
+    - 实现了经验加成（目前仅来自技能里程碑）
 </pre></div>
 <button type="button" class="collapsible">v0.3</button>
 <div class="content"><pre>
 v0.3
-    - drop chance now scales with how many of specific enemy were killed, down to 1/10th at 999+
-    - fixed minor bugs when trading stackable items
-    - changed the starting year to 1000
-    - location choices now get foldered only when there's more than two (used to be at more than one)
-    - equipment prices increased by ~50%
-    - introduced bestiary with list of all killed enemies (killcount, description, stats, drops their chances)
-    - rebalanced "sleeping" skill rewards
+    - 掉落概率现在会随特定敌人的击杀数量变化，在999+时降至1/10
+    - 修复了交易可堆叠物品时的若干小错误
+    - 起始年份改为1000
+    - 地点选项现在仅在多于两个时才会折叠（以前是多于一个）
+    - 装备价格提高了约50%
+    - 新增图鉴，列出所有已击杀的敌人（击杀数、描述、属性、掉落物及其概率）
+    - 重新平衡了「睡眠」技能的奖励
 v0.3b
-    - fixed wrong milestone levels on weapon skills after loading game
-    - changed xp scaling of some skills
-    - fixed wrong calculations on shield blocking skill
+    - 修复了加载游戏后武器技能里程碑等级错误的问题
+    - 更改了一些技能的经验成长曲线
+    - 修复了盾牌格挡技能的计算错误
 v0.3c
-    - fixed a minor error when loading save with any skill having less xp than needed to be visible
-    - changed the way savefiles are loaded to avoid a bunch of issues
+    - 修复了加载存档时的一个小错误，该错误在某个技能经验不足而无法显示时出现
+    - 更改了存档文件的加载方式，以避免一系列问题
 </pre></div>
 <button type="button" class="collapsible">v0.2.9</button>
 <div class="content"><pre>
 v0.2.9
-    - added "iron skin" skill that provides a tiny bit of def, xp is gained for fighting with no armour equipped
-    - evasion xp is increased by 50% when fighting with no armor equipped (let's call it an adrenaline bonus)
-    - changed the hit-chance formula to non-linear
+    - 新增了「铁皮」技能，提供少量防御，未装备护甲战斗时获得经验
+    - 未装备护甲战斗时闪避经验提高50%（就叫它肾上腺素加成吧）
+    - 将命中率公式改为非线性
 v0.2.9b
-    - "iron skin" now works
-    - minor fixes to some formulas
+    - 「铁皮」现在生效了
+    - 对一些公式做了小幅修正
 </pre></div>
 <button type="button" class="collapsible">v0.2.8</button>
 <div class="content"><pre>
 v0.2.8
-    - message log can now be filtered for stuff related to combat/levelups&unlocks/events/loot
-    - now if there's more than 1 option in any category (work, train, travel, talk, trade), 
-      it's available via separate list of choices instead of all being crammed together
-    - rounded displayed values for some skill effects
+    - 消息记录现在可以按与战斗/升级与解锁/事件/战利品相关的内容进行筛选
+    - 现在只要任一类别（工作、训练、旅行、交谈、交易）中有多于1个选项，
+      就会通过单独的选项列表呈现，而不是全部挤在一起
+    - 对一些技能效果的显示数值进行了取整
 </pre></div>
 <button type="button" class="collapsible">v0.2.7</button>
 <div class="content"><pre>
 v0.2.7
-    - reworked the location type system
-    - payments for some jobs are now affected by related skill
-    - moved dialogue answers to dialouge box (instead of message log)
+    - 重做了地点类型系统
+    - 某些工作的报酬现在受相关技能影响
+    - 将对话回答移到了对话框（而不是消息记录）
 </pre></div>
 <button type="button" class="collapsible">v0.2.5</button>
 <div class="content"><pre>
 v0.2.5
-    - modified tooltip positioning so that they don't leave the screen
-    - rounded some displayed numbers
-    - slightly weakened first enemy type
-    - some minor bugfixes
+    - 调整了提示框的定位，使其不会超出屏幕
+    - 对一些显示数值进行了取整
+    - 略微削弱了第一种敌人
+    - 一些小的错误修复
 </pre></div>
 <button type="button" class="collapsible">v0.2.4</button>
 <div class="content"><pre>
 v0.2.4
-    - introduced location types (for combat zones), that bring some additional penalties to hit/evasion chance
-    - added a new job, unlocked after clearing 2nd combat zone
+    - 引入了地点类型（用于战斗区域），会额外降低命中/闪避几率
+    - 新增了一份工作，清场第2个战斗区域后解锁
 </pre></div>
 <button type="button" class="collapsible">v0.2.2</button>
 <div class="content"><pre>
 v0.2.2
-    - fixed issue where multi-enemy locations required killing X enemies, instead of killing X enemy groups
-    - implemented stamina effects on character's attack speed and attack power
-    - number of [alive] enemies now has negative impact on character's hit chance
-    - number of enemies multiplies gained character xp by sqrt of group size
-    - new training activity
+    - 修复了多敌人地点需要击杀X个敌人而不是X组敌人的问题
+    - 实现了体力对角色攻击速度和攻击力的影响
+    - 现在[alive]敌人的数量会对角色的命中率产生负面影响
+    - 敌人数量会使获得的角色经验乘以敌人组规模的平方根
+    - 新增训练活动
 </pre></div>
 <button type="button" class="collapsible">v0.2.1</button>
 <div class="content"><pre>
 v0.2.1
-    - fixed two small problems when importing file
-    - fixed issue with combat being paused when area page is hidden
-    - rewrote the combat loops, made it work properly when tab is not focused
+    - 修复了导入文件时的两个小问题
+    - 修复了区域页面隐藏时战斗被暂停的问题
+    - 重写了战斗循环，使其在标签页未聚焦时也能正常工作
 </pre></div>
 <button type="button" class="collapsible">v0.2</button>
 <div class="content"><pre>
 v0.2.0
-    - fixed all the bugs I managed to find; 
-    fighting against groups now should work without any issues (other than balance)
+    - 修复了我能找到的所有错误；
+    现在与敌人组战斗应该可以正常工作（平衡性除外）
 
-    - restructured a lot of code, mostly moved stuff to new places,
-    but also created some new methods for updating the display
+    - 重构了大量代码，主要是把一些内容移到了新位置，
+    但也新增了一些用于更新显示的方法
 
-    - moved the page selection buttons to the top
-    - switched from fontawesome to google icons
+    - 将页面选择按钮移到了顶部
+    - 从fontawesome切换到了google图标
 </pre></div>
     <script>
         const btns = document.getElementsByClassName("collapsible");

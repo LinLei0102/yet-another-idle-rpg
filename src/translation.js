@@ -12,9 +12,20 @@ class TranslationManager {
 
     init = async(language) => {
         if(!translations[language]) {
-            const module = await import(`../locales/${language}.js`);
-            translations[language] = module.default;
-            console.log(`Language '${language}' loaded!`);
+            try {
+                const module = await import(`../locales/${language}.js`);
+                translations[language] = module.default;
+                console.log(`Language '${language}' loaded!`);
+            } catch(error) {
+                //汉化补丁：语言包缺失时回退到英文，避免卡在加载界面
+                console.warn(`Could not load language '${language}', falling back to '${default_language}'.`, error);
+                if(language !== default_language) {
+                    await this.init(default_language);
+                    translations[language] = translations[default_language];
+                } else {
+                    translations[language] = {};
+                }
+            }
         }
     };
 

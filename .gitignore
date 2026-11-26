@@ -1,8 +1,19 @@
-todo.txt
-achievements.js
-/node_modules
+node_modules/
 package-lock.json
-package.json
-.eslintrc.json
-.dependency-cruiser.js
-dependency-graph.svg
+work/shots/
+work/dump-*.json
+work/missing-main.json
+work/sweep-residual.json
+work/save-base.json
+work/build-report.json
+work/raw-strings.json
+work/words.json
+work/words-missing.json
+work/extra-words.json
+work/html-strings.json
+work/strings-all.json
+work/parts-meta.json
+work/locations.json
+
+# 本地测试存档（含满级存档，不随仓库发布）
+save/

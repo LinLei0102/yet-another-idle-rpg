@@ -6,6 +6,17 @@
 > **在线游玩：https://linlei0102.github.io/yet-another-idle-rpg/**
 > 更新日志（中文）：/changelog.html　帮助（中文）：/help.html
 
+## 部署说明
+
+本站由 GitHub Pages 从 **`gh-pages`** 分支托管。更新流程：
+
+```bash
+git push origin master            # 代码与汉化内容
+git push origin master:gh-pages   # 同步到托管分支（Pages 自动重建，约 10–60 秒）
+```
+
+`master` 保留完整上游历史（本汉化是在上游 `v0.5.5.30` 之上追加的一次提交），`gh-pages` 始终与 `master` 指向同一提交。
+
 ## 汉化范围
 
 - 界面、技能、物品、地点、对话、战斗日志、图鉴、任务、书籍、商店、制作等全部玩家可见文本

@@ -49,7 +49,13 @@
 
   // ---- 动态文本模板（数值/时间/数量参与拼接）----
   var TEMPLATES = [];
-  function tpl(re, fn) { TEMPLATES.push([re, fn]); }
+  var TPL_SEEN = Object.create(null);
+  function tpl(re, fn) {
+    var key = re.source + "|" + re.flags;
+    if (TPL_SEEN[key]) return;   // 同名规则只登记一次，避免重复注册导致模板表无限增长
+    TPL_SEEN[key] = 1;
+    TEMPLATES.push([re, fn]);
+  }
 
   // 技能里程碑与格挡描述
   tpl(/^Thanks to (.+?) reaching new milestone, (.+?) gained:\s*$/, function (t) {
@@ -960,11 +966,9 @@
   function tr_label(label) {
     var hit = MAP[label] || NORM_MAP[normalize(label)];
     if (hit) return hit;
-    var low = label.toLowerCase();
-    for (var key in MAP) {
-      if (key.toLowerCase() === low) return MAP[key];
-    }
-    return null;
+    // 大小写无关匹配走预建索引，避免每次遍历整张词典（O(1) 而不是 O(n)）
+    var low = LOWER_MAP[String(label).toLowerCase()];
+    return low === undefined ? null : low;
   }
 
   // 单条加成片段："12 str"、"x1.1 Running xp gain"、"+0.1 stam regen"、"x1.05 all skill xp gain"
@@ -974,6 +978,14 @@
     if (/^\?{2,}$/.test(t)) return "？？？";
     return tr_label(t) || t;
   }
+
+  // 技能效果里的复合名词："drop chances from Beasts"
+  tpl(/^drop chances? from (.+)$/, function (t) {
+    var tag = /^drop chances? from (.+)$/.exec(t)[1];
+    var hit = tr_label(tag);
+    if (!hit && /s$/.test(tag)) hit = tr_label(tag.slice(0, -1));
+    return (hit || tag) + "的掉落几率";
+  });
 
   function tr_fragment(f) {
     var t2 = f.trim();
@@ -1017,7 +1029,21 @@
     return t === null ? null : head + t;
   }
 
+  // 同一串文本会被反复翻译（日志/提示框每秒重绘），这里做结果缓存
+  var TRANSLATE_CACHE = new Map();
+  var TRANSLATE_CACHE_MAX = 8192;
   function translate(text) {
+    if (text == null) return null;
+    if (typeof text !== "string") return translate_uncached(text);
+    var cached = TRANSLATE_CACHE.get(text);
+    if (cached !== undefined) return cached;
+    var result = translate_uncached(text);
+    if (TRANSLATE_CACHE.size >= TRANSLATE_CACHE_MAX) TRANSLATE_CACHE.clear();
+    TRANSLATE_CACHE.set(text, result);
+    return result;
+  }
+
+  function translate_uncached(text) {
     if (!text) return null;
     if (!/[A-Za-z]/.test(text)) return null; // 已是中文/纯数字 → 跳过
     var trimmed = text.trim();
@@ -1092,15 +1118,7 @@
       if (a && b && c) return a + "、" + b + "与" + c;
     }
 
-    // 技能效果里的复合名词："drop chances from Beasts"
-  tpl(/^drop chances? from (.+)$/, function (t) {
-    var tag = /^drop chances? from (.+)$/.exec(t)[1];
-    var hit = tr_label(tag);
-    if (!hit && /s$/.test(tag)) hit = tr_label(tag.slice(0, -1));
-    return (hit || tag) + "的掉落几率";
-  });
-
-  // 未知占位："???"
+    // 未知占位："???"
     if (/^\?{2,}$/.test(trimmed)) return "？？？";
 
     // 中英混排（多半是「已翻译的前缀 + 后追加的英文尾段」）：放在模板之后，

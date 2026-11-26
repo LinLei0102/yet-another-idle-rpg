@@ -50,11 +50,59 @@
   // ---- 动态文本模板（数值/时间/数量参与拼接）----
   var TEMPLATES = [];
   var TPL_SEEN = Object.create(null);
+  var TPL_BUCKETS = Object.create(null);  // 首字符 -> 规则（按登记顺序）
+  var TPL_COMMON = [];                    // 无首字符锚点的规则，必须参与每次匹配
+  var TPL_EMPTY = [];
+  var STATS = { calls: 0, cacheHits: 0, ruleTests: 0 };
+
+  // 从正则源码里推断首字符桶；推不出就归到 COMMON（保持原有先后顺序）
+  function bucket_key(re) {
+    var s = re.source;
+    if (s.charAt(0) !== "^") return null;
+    var c = s.charAt(1);
+    if (c === "\\") {
+      var d = s.charAt(2);
+      if (d === "d") return "#digit";
+      if (d === "s" || d === "w" || d === "b" || d === "u") return null;
+      return d;
+    }
+    if (c === "" || c === "[" || c === "(" || c === "." || c === "*" || c === "+" ||
+        c === "?" || c === "$" || c === "|" || c === "^") return null;
+    return c;
+  }
+
   function tpl(re, fn) {
     var key = re.source + "|" + re.flags;
     if (TPL_SEEN[key]) return;   // 同名规则只登记一次，避免重复注册导致模板表无限增长
     TPL_SEEN[key] = 1;
-    TEMPLATES.push([re, fn]);
+    var entry = [re, fn, TEMPLATES.length];
+    TEMPLATES.push(entry);
+    var b = bucket_key(re);
+    if (b === null) { TPL_COMMON.push(entry); }
+    else { (TPL_BUCKETS[b] || (TPL_BUCKETS[b] = [])).push(entry); }
+  }
+
+  // 按全局登记顺序执行 template 匹配：桶内规则与 COMMON 规则做一次归并，只测可能命中的
+  function run_templates(str) {
+    var first = str.charAt(0);
+    var bucket = TPL_BUCKETS[/[0-9]/.test(first) ? "#digit" : first] || TPL_EMPTY;
+    var i = 0, j = 0, out;
+    while (i < bucket.length && j < TPL_COMMON.length) {
+      var e = bucket[i][2] < TPL_COMMON[j][2] ? bucket[i++] : TPL_COMMON[j++];
+      STATS.ruleTests++;
+      if (e[0].test(str)) { out = e[1](str); if (out) return out; }
+    }
+    while (i < bucket.length) {
+      var e2 = bucket[i++];
+      STATS.ruleTests++;
+      if (e2[0].test(str)) { out = e2[1](str); if (out) return out; }
+    }
+    while (j < TPL_COMMON.length) {
+      var e3 = TPL_COMMON[j++];
+      STATS.ruleTests++;
+      if (e3[0].test(str)) { out = e3[1](str); if (out) return out; }
+    }
+    return null;
   }
 
   // 技能里程碑与格挡描述
@@ -1036,7 +1084,8 @@
     if (text == null) return null;
     if (typeof text !== "string") return translate_uncached(text);
     var cached = TRANSLATE_CACHE.get(text);
-    if (cached !== undefined) return cached;
+    if (cached !== undefined) { STATS.cacheHits++; return cached; }
+    STATS.calls++;
     var result = translate_uncached(text);
     if (TRANSLATE_CACHE.size >= TRANSLATE_CACHE_MAX) TRANSLATE_CACHE.clear();
     TRANSLATE_CACHE.set(text, result);
@@ -1092,24 +1141,15 @@
         var tail = /^(.*?) real time$/.exec(val);
         if (tail) val = tail[1] + "（现实时间）";
         if (!vhit) {
-          for (var vi = 0; vi < TEMPLATES.length; vi++) {
-            if (TEMPLATES[vi][0].test(val)) {
-              var vout = TEMPLATES[vi][1](val);
-              if (vout) { val = vout; break; }
-            }
-          }
+          var vout = run_templates(val);
+          if (vout) val = vout;
         }
         return lab + "：" + fix_brackets(val);
       }
     }
 
-    for (var i = 0; i < TEMPLATES.length; i++) {
-      var r = TEMPLATES[i];
-      if (r[0].test(trimmed)) {
-        var out = r[1](trimmed);
-        if (out) return out;
-      }
-    }
+    var tplHit = run_templates(trimmed);
+    if (tplHit) return tplHit;
 
     // 「a, b and c」并列短语
     var conj = /^(.+?), (.+?) and (.+)$/.exec(trimmed);
@@ -1276,6 +1316,6 @@
   document.addEventListener("DOMContentLoaded", sync_language_checkbox);
   sync_language_checkbox();
 
-  window.__zh_patch = { version: "zh-cn-2", templates: TEMPLATES, translate: translate, dict: MAP };
+  window.__zh_patch = { version: "zh-cn-2", templates: TEMPLATES, translate: translate, dict: MAP, stats: STATS };
   console.log("[汉化补丁] 覆盖层 " + window.__zh_patch.version + " 已加载，词典 " + Object.keys(MAP).length + " 条");
 })();
